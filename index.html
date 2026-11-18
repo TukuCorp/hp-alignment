@@ -28,7 +28,7 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font); font-
 * { box-sizing: border-box; }
 button { font: inherit; color: inherit; }
 p { margin: 0; }
-.app { height: 100%; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+.app { height: 100%; display: flex; flex-direction: column; position: relative; overflow: hidden; overflow: clip; } /* clip: never a scroll container, so the top bar cannot be scrolled off-screen on phones */
 .top, .nav { display: flex; align-items: center; gap: 14px; padding-block: 9px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); background: var(--surface); position: relative; z-index: 3; }
 .top { border-bottom: 1px solid var(--line); }
 .nav { border-top: 1px solid var(--line); padding-bottom: max(9px, env(safe-area-inset-bottom, 0px)); }
@@ -737,6 +737,8 @@ document.addEventListener('DOMContentLoaded', function () {
   var start = slides.findIndex(function (s) { return '#' + s.id === location.hash; });
   cur = -1; A.show(start >= 0 ? start : 0);
 });
+  /* older Safari has no overflow:clip; undo any scroll of the app shell */
+  var shell = document.querySelector('.app'); if (shell) shell.addEventListener('scroll', function () { shell.scrollTop = 0; });
 })();
 
 /* Primary sources behind Tung's numbers. Footers list them as numbered footnotes:
