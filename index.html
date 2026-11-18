@@ -283,6 +283,70 @@ input[type=range] { width: 100%; accent-color: var(--teal); margin: 0; height: 2
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
 .fill.dim { opacity: .35; }
 .fit #pwChart { flex: 1 1 0; min-height: 0; display: flex; flex-direction: column; } .fit #pwChart[hidden] { display: none; } .fit #pwSvg { flex: 1 1 0; min-height: 0; height: 100%; }
+
+/* slide 2: labelled connectors, equation strip, worked source card */
+.conn { flex: 0 0 96px; }
+.conn svg { width: 96px; }
+.conn em { font-style: normal; font-size: 11.5px; font-weight: 600; text-align: center; line-height: 1.15; max-width: 92px; }
+.eqs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.eq { display: flex; gap: 10px; align-items: flex-start; padding: 9px 12px; border: 1.5px solid var(--line); border-radius: 12px; background: var(--surface); opacity: .6; transition: opacity .3s, border-color .3s, background .3s; }
+.eq.on { opacity: 1; border-color: var(--teal); background: var(--tealSoft); }
+.eqn { flex: 0 0 24px; height: 24px; border-radius: 50%; background: var(--teal); color: var(--surface); font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; }
+.eqh { font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 700; }
+.eqf { font-weight: 700; font-size: 14px; line-height: 1.25; }
+.eqx { font-size: 12.5px; color: var(--muted); margin-top: 2px; font-variant-numeric: tabular-nums; }
+@media (max-width: 899px) { .eqs { grid-template-columns: minmax(0, 1fr); } .conn { display: none; } }
+.seg.vert { flex-direction: column; flex-wrap: nowrap; }
+.seg.vert { gap: 6px; } .seg.vert button { width: 100%; display: flex; align-items: baseline; gap: 10px; padding: 7px 12px; } .seg.vert button small { display: inline; }
+.srcc { display: flex; flex-direction: column; gap: 6px; }
+.eqrow { display: flex; align-items: stretch; gap: 10px; margin-top: 12px; }
+.eqbox { flex: 1 1 0; min-width: 0; background: rgba(255,255,255,.07); border-radius: 12px; padding: 12px 14px; font-size: 17px; line-height: 1.3; display: flex; flex-direction: column; gap: 4px; }
+.eqbox .lbl { color: #B5D8D0; margin: 0; }
+.eqbox b { font-size: 26px; font-variant-numeric: tabular-nums; }
+.eqbox small { display: block; font-size: 12.5px; color: #B5D8D0; line-height: 1.25; margin-top: 3px; }
+.eqbox.res { background: rgba(181,216,208,.18); }
+.eqbox .mid { color: #fff; font-size: 34px; }
+.eqop { align-self: center; font-size: 26px; font-weight: 700; color: #B5D8D0; }
+@media (max-width: 899px) { .eqrow { flex-direction: column; } .eqop { align-self: center; } }
+.pa { display: flex; flex-direction: column; gap: 7px; font-size: 14.5px; line-height: 1.35; margin-top: auto; }
+.pa b { color: #fff; margin-right: 4px; }
+.pa .lbl { color: #B5D8D0; margin: 0; }
+.sub { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); }
+.subrow { display: flex; align-items: stretch; gap: 12px; }
+.subbox { flex: 1 1 0; min-width: 0; border-radius: 12px; padding: 12px 14px; background: var(--bg); display: flex; flex-direction: column; gap: 4px; }
+.subbox.c { background: var(--tealSoft); } .subbox .lbl { margin: 0; } .subbox .mid { font-size: 32px; }
+.eqop.dark { color: var(--muted); }
+#secBars { gap: 26px; } #secBars .track { height: 36px; } #secBars .blabel { font-size: 15.5px; }
+.kpis.k4 { grid-template-columns: repeat(4, minmax(0, 1fr)); } @media (max-width: 620px) { .kpis.k4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.stack.tall { height: 52px; } .stack.tall > div { display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 15px; white-space: nowrap; overflow: hidden; }
+.hpcard { background: var(--bg); border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; }
+.hpcard .lbl { margin: 0; }
+.hpparts { display: flex; flex-wrap: wrap; gap: 6px; }
+.hpparts > span { background: var(--surface); border: 1px solid var(--line); border-radius: 9px; padding: 4px 9px; font-size: 13px; } .hpparts b { font-variant-numeric: tabular-nums; } .hpparts small { display: block; font-size: 11.5px; color: var(--muted); }
+.cutlbl { color: var(--amber); font-weight: 700; font-size: 13.5px; margin-left: 4px; }
+.brow.pick { cursor: pointer; border-radius: 10px; padding: 3px 4px; margin: -3px -4px; transition: background .2s; } .brow.pick:hover { background: var(--bg); } .brow.pick[aria-pressed="true"] { background: var(--tealSoft); }
+.pkview[hidden] { display: none; } .fit .pkview { flex: 1 1 0; min-height: 0; display: flex; flex-direction: column; gap: 8px; }
+.pkgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; flex: 1; min-height: 0; margin-top: 4px; }
+.pkcard { text-align: left; border: 1.5px solid var(--line); background: var(--surface); border-radius: 14px; padding: 12px 13px; cursor: pointer; display: flex; flex-direction: column; gap: 6px; min-height: 0; transition: border-color .2s, box-shadow .2s; }
+.pkcard[aria-pressed="true"] { border-color: var(--teal); background: var(--tealSoft); box-shadow: 0 0 0 4px var(--glow); }
+.pkh { font-weight: 700; font-size: 17px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; } .pkd { min-height: 54px; }
+.pkstack { display: flex; height: 14px; border-radius: 7px; overflow: hidden; background: var(--hpSoft); } .pkstack i { display: block; height: 100%; }
+.pkm { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-direction: column; gap: 5px; font-size: 13px; }
+.pkm li { display: grid; grid-template-columns: 10px minmax(0, 1fr) auto; gap: 7px; align-items: baseline; line-height: 1.2; } .pkm .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; } .pkm b { font-variant-numeric: tabular-nums; }
+.fit .pkview[hidden] { display: none; }
+.hpparts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; } .hpparts > span { text-align: center; padding: 4px 4px; } .hpparts > span b { display: block; font-size: 16px; } .hpparts > span small { display: none; }
+#cBars { gap: 20px; } #cBars .track { height: 38px; } #cBars .blabel { font-size: 16px; }
+.share { display: flex; align-items: center; gap: 12px; margin-top: 14px; } .share .track { flex: 1; height: 18px; background: rgba(255,255,255,.12); } .share .fill { background: #B5D8D0; }
+.inbar { display: flex; height: 40px; border-radius: 10px; overflow: hidden; gap: 2px; } .inbar > div { display: flex; align-items: center; justify-content: center; min-width: 0; color: #fff; font-size: 13px; font-weight: 700; white-space: nowrap; overflow: hidden; } .inbar > div:last-child { color: var(--ink); } .inbar span { padding: 0 6px; overflow: hidden; text-overflow: ellipsis; }
+.padef { margin-top: 16px; padding: 12px 14px; border-radius: 12px; background: var(--bg); font-size: 14.5px; line-height: 1.4; display: flex; flex-direction: column; gap: 5px; max-width: 760px; } .padef b { color: var(--teal); }
+.mod { padding: 9px 12px 8px; gap: 2px; } .mod svg { width: 24px; height: 24px; }
+.eq { padding: 7px 11px; } .eqf { font-size: 13.5px; } .eqx { font-size: 12px; }
+#terBlocks { height: 46px; } .padef { font-size: 13.5px; margin-top: 10px; padding: 9px 12px; gap: 3px; }
+.eqbox { padding: 9px 12px; font-size: 16px; } .eqbox .mid { font-size: 30px; } .eqrow { margin-top: 8px; } .share { margin-top: 10px; }
+.slide.on#basics { gap: 10px; }
+.seg.vert button { padding: 10px 14px; } .seg.vert { gap: 8px; }
+.eqbox { padding: 14px 14px; font-size: 18px; } .eqbox b { font-size: 30px; } .eqbox .mid { font-size: 38px; } .share { margin-top: 18px; } .share .track { height: 22px; }
+@media (max-width: 899px) { .pkgrid { grid-template-columns: minmax(0, 1fr); } .subrow { flex-direction: column; } .subrow .eqop { align-self: center; } .pkcard { min-height: auto; } }
 </style>
 <!-- Bilingual text is written <span class="en">English</span><span class="vi">Tiếng Việt</span>; build_alignment.py expands it to .en/.vi spans. Terms follow hp/translate-2026-10-23/glossary.md. -->
 <div class="app" id="app">
@@ -321,7 +385,7 @@ input[type=range] { width: 100%; accent-color: var(--teal); margin: 0; height: 2
 <p class="small" id="stripNote" style="min-height:20px"></p>
 </div>
 </div>
-<div class="plain"><span class="en"><b>In plain words.</b> An inventory adds up the greenhouse gas a city emits in one year. Old Hải Phòng has an official one for 2020. The merged city has one for 2025. The problems sit in the gaps between them, and every gap changes the 2030 target. Slide 7 lets you change the inputs and watch the cap move.</span><span class="vi"><b>Nói đơn giản.</b> Kiểm kê KNK là cộng toàn bộ khí nhà kính một thành phố phát thải trong một năm. Hải Phòng cũ có kiểm kê chính thức năm 2020. Thành phố sau sáp nhập có kiểm kê năm 2025. Vấn đề nằm ở khoảng trống giữa hai bộ số liệu này, và mỗi khoảng trống đều làm thay đổi mục tiêu 2030. Trang 7 cho phép thay đổi đầu vào và xem mức trần thay đổi theo.</span></div>
+<div class="plain"><span class="en"><b>In plain words.</b> An inventory adds up the greenhouse gas a city emits in one year. Old Hải Phòng has an official one for 2020. The merged city has one for 2025. The problems sit in the gaps between them, and every gap changes the 2030 target. Slides 7 and 8 let you change the inputs and watch the base, then the cap, move.</span><span class="vi"><b>Nói đơn giản.</b> Kiểm kê KNK là cộng toàn bộ khí nhà kính một thành phố phát thải trong một năm. Hải Phòng cũ có kiểm kê chính thức năm 2020. Thành phố sau sáp nhập có kiểm kê năm 2025. Vấn đề nằm ở khoảng trống giữa hai bộ số liệu này, và mỗi khoảng trống đều làm thay đổi mục tiêu 2030. Trang 7 và 8 cho phép thay đổi đầu vào và xem năm cơ sở, rồi mức trần, thay đổi theo.</span></div>
 <p class="src" data-refs="qd1772 nq08 hd21 ppc20 ngtk24"><span class="en">Hằng: BAU tool, Tổng hợp C8; Hải Anh: v6 workbook, Tổng hợp H8</span><span class="vi">Chị Hằng: công cụ BAU, Tổng hợp C8; Hải Anh: bảng tính v6, Tổng hợp H8</span></p>
 </section>
 
@@ -331,7 +395,8 @@ input[type=range] { width: 100%; accent-color: var(--teal); margin: 0; height: 2
 <h2><span class="en">From inventory to 2030 cap, in five steps</span><span class="vi">Từ kiểm kê đến mức trần 2030, qua năm bước</span></h2>
 <p class="lead"><span class="en">Tap each box from left to right. Each one opens a small working example.</span><span class="vi">Chạm lần lượt từng ô từ trái sang phải. Mỗi ô mở ra một ví dụ nhỏ.</span></p></div>
 <div class="flow rise" style="--i:1" id="flow"></div>
-<div class="panel rise" style="--i:2; flex:1; min-height:0;" id="modDetail"></div>
+<div class="eqs rise" style="--i:2" id="eqs"></div>
+<div class="panel rise" style="--i:3; flex:1; min-height:0;" id="modDetail"></div>
 <div class="plain"><span class="en"><b>In plain words.</b> Every number in this deck comes from one multiplication: how much of something happened, times how much gas each unit releases. The results are added up by sector, then by territory. The provinces merged, but only old Hải Phòng has a 2020 inventory, so Hải Dương 2020 has to be estimated. That estimate sets the 2020 base, and the cap is 56.5% of the base.</span><span class="vi"><b>Nói đơn giản.</b> Mọi con số trong tài liệu này đều từ một phép nhân: số liệu hoạt động nhân với hệ số phát thải. Kết quả được cộng theo lĩnh vực, rồi theo địa bàn. Hai tỉnh đã sáp nhập nhưng chỉ Hải Phòng cũ có kiểm kê năm 2020, nên phải ước tính Hải Dương 2020. Ước tính đó quyết định năm cơ sở 2020, và mức trần bằng 56,5% của năm cơ sở.</span></div>
 <p class="src" data-refs="qd1772 nq08 hd21 ngtk24"></p>
 </section>
@@ -404,7 +469,10 @@ input[type=range] { width: 100%; accent-color: var(--teal); margin: 0; height: 2
 <h2><span class="en">Three estimates for Hải Dương 2020</span><span class="vi">Ba ước tính cho Hải Dương 2020</span></h2>
 <p class="lead"><span class="en">Old Hải Dương never made a 2020 inventory. Tap a name to rebuild the merged 2020 total.</span><span class="vi">Hải Dương cũ chưa từng lập kiểm kê năm 2020. Chạm vào từng tên để dựng lại tổng 2020 của thành phố sau sáp nhập.</span></p></div>
 <div class="body c48">
-<div class="col rise" style="--i:1" id="whoCards"></div>
+<div class="col rise" style="--i:1"><div class="col" id="whoCards"></div>
+<div class="panel deep pa"><p class="lbl"><span class="en">PA = phương án (option)</span><span class="vi">PA = phương án</span></p>
+<p><b>PA1</b> <span class="en">Rebuild Hải Dương 2020 line by line, with the same methods as the official old Hải Phòng 2020 report.</span><span class="vi">Dựng lại Hải Dương 2020 từng dòng, bằng cùng phương pháp với báo cáo chính thức Hải Phòng cũ 2020.</span></p>
+<p><b>PA2</b> <span class="en">Cross-check: take Hải Dương's share of the 2025 inventory and scale it back to 2020 by activity.</span><span class="vi">Đối chiếu: lấy phần Hải Dương trong kiểm kê 2025 rồi suy ngược về 2020 theo số liệu hoạt động.</span></p></div></div>
 <div class="panel col rise" style="--i:2">
 <div style="display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap;"><p class="lbl" style="margin:0"><span class="en">Merged city 2020, Mt CO2e</span><span class="vi">Thành phố sau sáp nhập 2020, triệu tấn CO2tđ</span></p><p><span class="mid" id="whoTotal">41.84</span> <span class="unit">Mt</span></p></div>
 <div class="blocks" id="whoBlocks"></div>
@@ -438,35 +506,38 @@ input[type=range] { width: 100%; accent-color: var(--teal); margin: 0; height: 2
 </section>
 
 <!-- 7 -->
-<section class="slide" id="calculator" data-en="Base and cap calculator" data-vi="Tính năm cơ sở và mức trần">
+<section class="slide" id="calculator" data-en="2020 base and 2030 BAU" data-vi="Năm cơ sở 2020 và BAU 2030">
 <div class="hd rise"><p class="eyebrow"><span class="en">Calculator</span><span class="vi">Công cụ tính</span></p>
-<h2><span class="en">Build the 2020 base, see the 2030 cap</span><span class="vi">Dựng năm cơ sở 2020, xem mức trần 2030</span></h2></div>
+<h2><span class="en">Build the 2020 base and set it against 2030 BAU</span><span class="vi">Dựng năm cơ sở 2020 và đặt cạnh BAU 2030</span></h2>
+<p class="lead"><span class="en">Old Hải Phòng 2020 is official. Change the three inputs and watch the base and BAU move.</span><span class="vi">Hải Phòng cũ 2020 là số chính thức. Thay đổi ba đầu vào để xem năm cơ sở và BAU thay đổi.</span></p></div>
 <div class="body c48">
 <div class="panel col rise" style="--i:1">
-<p class="lbl"><span class="en">Hải Dương 2020</span><span class="vi">Hải Dương 2020</span></p>
+<div class="hpcard" id="hpCard"></div>
+<p class="lbl" style="margin-top:4px"><span class="en">Old Hải Dương 2020, estimated</span><span class="vi">Hải Dương cũ 2020, ước tính</span></p>
 <div class="seg" id="cHD"></div>
-<p class="lbl" style="margin-top:6px"><span class="en">Old Hải Phòng road 2020</span><span class="vi">Đường bộ Hải Phòng cũ 2020</span></p>
+<p class="lbl" style="margin-top:4px"><span class="en">Old Hải Phòng road 2020</span><span class="vi">Đường bộ Hải Phòng cũ 2020</span></p>
 <div class="seg" id="cRoad"></div>
-<p class="lbl" style="margin-top:6px"><span class="en">What the 43.5% is measured from</span><span class="vi">Mốc so sánh của 43,5%</span></p>
-<div class="seg" id="cBasis"></div>
-<p class="muted small" style="margin-top:auto"><span class="en">The default settings are the proposal.</span><span class="vi">Thiết lập mặc định là đề xuất.</span></p>
+<p class="lbl" style="margin-top:4px"><span class="en">2030 BAU forecast from</span><span class="vi">Dự báo BAU 2030 của</span></p>
+<div class="seg" id="cBau"></div>
 </div>
 <div class="panel col rise" style="--i:2">
-<div class="kpis">
-<div><p class="lbl"><span class="en">Merged 2020</span><span class="vi">Tổng 2020 sau sáp nhập</span></p><p class="mid" id="kBase"></p></div>
-<div><p class="lbl"><span class="en">2030 cap</span><span class="vi">Mức trần 2030</span></p><p class="mid" id="kCap" style="color:var(--teal)"></p></div>
-<div><p class="lbl"><span class="en">Cut needed from BAU 43.02</span><span class="vi">Mức cần giảm so với BAU 43,02</span></p><p class="mid" id="kCut"></p></div>
+<div class="kpis k4">
+<div><p class="lbl"><span class="en">Old Hải Phòng 2020</span><span class="vi">Hải Phòng cũ 2020</span></p><p class="mid" id="kHP"></p></div>
+<div><p class="lbl"><span class="en">Old Hải Dương 2020</span><span class="vi">Hải Dương cũ 2020</span></p><p class="mid" id="kHD"></p></div>
+<div><p class="lbl"><span class="en">Merged 2020 base</span><span class="vi">Năm cơ sở 2020 sau sáp nhập</span></p><p class="mid" id="kBase" style="color:var(--teal)"></p></div>
+<div><p class="lbl"><span class="en">2030 BAU</span><span class="vi">BAU 2030</span></p><p class="mid" id="kBau"></p></div>
 </div>
-<p class="lbl" style="margin-top:6px"><span class="en">Merged 2020, Mt</span><span class="vi">Tổng 2020 sau sáp nhập, triệu tấn</span></p>
-<div class="stack" id="cStack"><div class="c-hp" id="cS1"></div><div id="cS2"></div></div>
-<div class="legend"><span><span class="sw c-hp"></span><span class="en">Old Hải Phòng</span><span class="vi">Hải Phòng cũ</span></span><span><span class="sw" id="cSw"></span><span class="en">Old Hải Dương</span><span class="vi">Hải Dương cũ</span></span></div>
-<p class="lbl" style="margin-top:6px"><span class="en">2030, Mt</span><span class="vi">Năm 2030, triệu tấn</span></p>
+<p class="lbl" style="margin-top:6px"><span class="en">How the 2020 base adds up, Mt CO2e</span><span class="vi">Năm cơ sở 2020 cộng từ đâu, triệu tấn CO2tđ</span></p>
+<div class="stack tall" id="cStack"><div class="c-hp" id="cS1"></div><div id="cS2"></div></div>
+<div class="legend"><span><span class="sw c-hp"></span><span class="en">Old Hải Phòng (official)</span><span class="vi">Hải Phòng cũ (chính thức)</span></span><span><span class="sw" id="cSw"></span><span class="en">Old Hải Dương (estimate)</span><span class="vi">Hải Dương cũ (ước tính)</span></span></div>
+<p class="lbl" style="margin-top:6px"><span class="en">2020 base against 2030 BAU, Mt CO2e</span><span class="vi">Năm cơ sở 2020 so với BAU 2030, triệu tấn CO2tđ</span></p>
 <div class="bars" id="cBars"></div>
-<p class="callout" id="cNote" style="margin-top:auto"></p>
+<p class="muted small" style="margin-top:auto"><span class="en">Next, slide 8: the 2030 cap is 56.5% of this base.</span><span class="vi">Tiếp theo, trang 8: mức trần 2030 bằng 56,5% năm cơ sở này.</span></p>
+<p class="callout" id="cNote"></p>
 </div>
 </div>
-<div class="plain"><span class="en"><b>In plain words.</b> The cap is 56.5% of the starting number (100% minus 43.5%). Change who estimates Hải Dương, whether the 2020 road figure is corrected, and what the 43.5% is measured from, and watch the cap move. BAU, business as usual, is the forecast for 2030 if nothing new is done: 43.02 Mt.</span><span class="vi"><b>Nói đơn giản.</b> Mức trần bằng 56,5% con số xuất phát (100% trừ 43,5%). Thay đổi người ước tính Hải Dương, việc có hiệu chỉnh đường bộ 2020 hay không, và mốc so sánh của 43,5%, rồi xem mức trần thay đổi. BAU, kịch bản phát triển thông thường, là dự báo năm 2030 nếu không có biện pháp mới: 43,02 triệu tấn.</span></div>
-<p class="src" data-refs="qd1772 nq08 nqdh pdp8 moit plx"><span class="en">The road case is Tung's estimate, not adopted.</span><span class="vi">Phương án đường bộ là ước tính của Tung, chưa được thông qua.</span></p>
+<div class="plain"><span class="en"><b>In plain words.</b> Two numbers feed the 2030 cap. The first is the 2020 base: old Hải Phòng's official 2020 inventory (20.88 Mt) plus an estimate for old Hải Dương, which never made one. The second is BAU, business as usual: the forecast for 2030 if nothing new is done, 43.02 Mt. Slide 8 turns the base into the cap.</span><span class="vi"><b>Nói đơn giản.</b> Hai con số dùng để dựng mức trần 2030. Thứ nhất là năm cơ sở 2020: kiểm kê chính thức Hải Phòng cũ 2020 (20,88 triệu tấn) cộng ước tính cho Hải Dương cũ, nơi chưa từng lập kiểm kê. Thứ hai là BAU, kịch bản phát triển thông thường: dự báo năm 2030 nếu không có biện pháp mới, 43,02 triệu tấn. Trang 8 biến năm cơ sở thành mức trần.</span></div>
+<p class="src" data-refs="qd1772 moit plx nqdh pdp8"><span class="en">The road case is Tung's estimate, not adopted.</span><span class="vi">Phương án đường bộ là ước tính của Tung, chưa được thông qua.</span></p>
 </section>
 
 <!-- 8 -->
@@ -485,11 +556,12 @@ input[type=range] { width: 100%; accent-color: var(--teal); margin: 0; height: 2
 <div class="seg" id="capSeg"></div>
 <button class="btn ghost" id="capReplay"><span class="en">Replay the 43.5% cut ↻</span><span class="vi">Xem lại phần giảm 43,5% ↻</span></button>
 </div>
-<div class="legend"><span><span class="sw" style="border:1.5px dashed var(--hp)"></span><span class="en">Starting number</span><span class="vi">Con số xuất phát</span></span><span><span class="sw c-ours"></span><span class="en">Cap = 56.5% of it</span><span class="vi">Mức trần = 56,5% con số đó</span></span></div>
+<div class="kpis" id="capKpi"></div>
+<div class="legend"><span><span class="sw" style="border:1.5px dashed var(--hp)"></span><span class="en">Starting number</span><span class="vi">Con số xuất phát</span></span><span><span class="sw c-ours"></span><span class="en">Cap = 56.5% of it</span><span class="vi">Mức trần = 56,5% con số đó</span></span><span>−<span class="en">x = the 43.5% cut, in Mt. Tap a bar.</span><span class="vi">x = phần giảm 43,5%, triệu tấn. Chạm vào một thanh.</span></span></div>
 <div class="bars" id="capBars"></div>
 </div>
 </div>
-<div class="plain"><span class="en"><b>In plain words.</b> Every bar uses the same rule: keep 56.5% of a starting number. Only the starting number changes. Without Hải Dương the 2020 base is too small and the cap too tight. Hải Anh's BAU of 68.61 Mt counts industry twice, so her BAU cap is far too loose. Once Hải Dương is counted in full, the two readings almost meet: 23.64 against 24.30.</span><span class="vi"><b>Nói đơn giản.</b> Mọi thanh đều dùng cùng một quy tắc: giữ lại 56,5% của con số xuất phát. Chỉ con số xuất phát thay đổi. Thiếu Hải Dương thì năm cơ sở 2020 quá nhỏ và mức trần quá chặt. BAU 68,61 triệu tấn của Hải Anh tính trùng công nghiệp, nên mức trần theo BAU quá lỏng. Khi tính đủ Hải Dương, hai cách hiểu gần như trùng nhau: 23,64 so với 24,30.</span></div>
+<div class="plain"><span class="en"><b>In plain words.</b> Every bar uses the same rule: keep 56.5% of a starting number, so the city must cut the other 43.5%. Only the starting number changes, and with it the cap and the amount to cut. Tap a bar to see its three numbers: the cap, the 43.5% cut, and the cut needed from 2030 BAU. Without Hải Dương the 2020 base is too small and the cap too tight. Hải Anh's BAU of 68.61 Mt counts industry twice, so her BAU cap is far too loose. Once Hải Dương is counted in full, the two readings almost meet: 23.64 against 24.30.</span><span class="vi"><b>Nói đơn giản.</b> Mọi thanh đều dùng cùng một quy tắc: giữ lại 56,5% của con số xuất phát, nên thành phố phải giảm 43,5% còn lại. Chỉ con số xuất phát thay đổi, kéo theo mức trần và lượng phải giảm. Chạm vào một thanh để xem ba con số: mức trần, phần giảm 43,5% và phần cần giảm so với BAU 2030. Thiếu Hải Dương thì năm cơ sở 2020 quá nhỏ và mức trần quá chặt. BAU 68,61 triệu tấn của Hải Anh tính trùng công nghiệp, nên mức trần theo BAU quá lỏng. Khi tính đủ Hải Dương, hai cách hiểu gần như trùng nhau: 23,64 so với 24,30.</span></div>
 <p class="src" data-refs="nq08 nqdh pdp8"><span class="en">Hải Anh: v6 Tổng hợp H8, 'nội suy 2020' H4; Hằng: BAU tool Tổng hợp C8, G8, B12; report draft §5.3.1 line 5764</span><span class="vi">Hải Anh: v6 Tổng hợp H8, 'nội suy 2020' H4; chị Hằng: công cụ BAU Tổng hợp C8, G8, B12; bản thảo báo cáo mục 5.3.1 dòng 5764</span></p>
 </section>
 
@@ -501,8 +573,9 @@ input[type=range] { width: 100%; accent-color: var(--teal); margin: 0; height: 2
 <div class="panel col rise" style="--i:1">
 <p class="lbl"><span class="en">2020 base</span><span class="vi">Năm cơ sở 2020</span></p>
 <div class="seg" id="pwBase"></div>
-<p class="lbl" style="margin-top:4px"><span class="en">Measures to 2030</span><span class="vi">Biện pháp đến 2030</span></p>
+<p class="lbl" style="margin-top:4px"><span class="en">Measures to 2030 (a package = a bundle of measures)</span><span class="vi">Biện pháp đến 2030 (gói = một nhóm biện pháp)</span></p>
 <div class="seg" id="pwPkg"></div>
+<button class="btn ghost" id="pwPkBtn" style="align-self:flex-start"><span class="en">What is in each package? →</span><span class="vi">Mỗi gói gồm gì? →</span></button>
 <p class="lbl" style="margin-top:4px"><span class="en">43.5% measured from</span><span class="vi">Mốc so sánh của 43,5%</span></p>
 <div class="seg" id="pwBasis"></div>
 <div class="seg" id="pwExtra" style="margin-top:4px"></div>
@@ -518,6 +591,7 @@ input[type=range] { width: 100%; accent-color: var(--teal); margin: 0; height: 2
 <svg id="pwSvg" viewBox="0 0 820 400" role="img" aria-label="Emission pathway chart"></svg>
 <div class="legend" id="pwLegend"></div>
 </div>
+<div id="pwPk" class="pkview" hidden></div>
 <div id="pwMath" class="pmath" hidden>
 <div class="pmcol">
 <p class="lbl"><span class="en">Step 1. Two starting numbers, same 2030 emissions</span><span class="vi">Bước 1. Hai con số xuất phát, cùng mức phát thải 2030</span></p>
@@ -533,7 +607,7 @@ input[type=range] { width: 100%; accent-color: var(--teal); margin: 0; height: 2
 </div>
 </div>
 </div>
-<div class="plain"><span class="en"><b>In plain words.</b> The line on the left is what the inventories say: the 2020 base, then 39.50 Mt in 2025. After 2025 the grey dashed line is business as usual and the teal line is what each package of measures achieves. The dotted line is the straight path from the 2020 base to the cap. The number at the top is the gap left in 2030. Even package C leaves about 9 Mt, mostly coal power, and coal plant dispatch is decided nationally, not by the city.</span><span class="vi"><b>Nói đơn giản.</b> Đoạn bên trái là số liệu kiểm kê: năm cơ sở 2020, rồi 39,50 triệu tấn năm 2025. Sau 2025, đường nét đứt màu xám là BAU, đường màu xanh là kết quả của từng gói biện pháp. Đường chấm là lộ trình thẳng từ năm cơ sở 2020 đến mức trần. Con số phía trên là khoảng cách còn lại năm 2030. Ngay cả gói C vẫn còn khoảng 9 triệu tấn, chủ yếu từ nhiệt điện than, mà việc huy động nhà máy than do trung ương quyết định, không phải thành phố.</span></div>
+<div class="plain"><span class="en"><b>In plain words.</b> The line on the left is what the inventories say: the 2020 base, then 39.50 Mt in 2025. After 2025 the grey dashed line is business as usual and the teal line is what each package achieves. A package is a bundle of measures: A is what is already decided or planned, B adds every measure we could quantify, C adds the hard structural ones. The Packages tab lists what is in each. The dotted line is the straight path from the 2020 base to the cap. The number at the top is the gap left in 2030. Even package C leaves about 9 Mt, mostly coal power, and coal plant dispatch is decided nationally, not by the city.</span><span class="vi"><b>Nói đơn giản.</b> Đoạn bên trái là số liệu kiểm kê: năm cơ sở 2020, rồi 39,50 triệu tấn năm 2025. Sau 2025, đường nét đứt màu xám là BAU, đường màu xanh là kết quả của từng gói. Gói là một nhóm biện pháp: gói A là những gì đã quyết định hoặc đã lên kế hoạch, gói B thêm mọi biện pháp đã định lượng được, gói C thêm các biện pháp khó mang tính cấu trúc. Tab Các gói liệt kê nội dung từng gói. Đường chấm là lộ trình thẳng từ năm cơ sở 2020 đến mức trần. Con số phía trên là khoảng cách còn lại năm 2030. Ngay cả gói C vẫn còn khoảng 9 triệu tấn, chủ yếu từ nhiệt điện than, mà việc huy động nhà máy than do trung ương quyết định, không phải thành phố.</span></div>
 <p class="src" data-refs="inv25 nqdh pdp8 ngtk25 ppc25 ndc"><span class="en">Hằng: BAU G8, report line 5801; Hải Anh: BAU Tổng hợp</span><span class="vi">Chị Hằng: BAU G8, báo cáo dòng 5801; Hải Anh: BAU Tổng hợp</span></p>
 </section>
 
@@ -832,12 +906,13 @@ var KG_PER_L = 35.5 * 74.8 / 1000; /* MJ/L × t/TJ → kg CO2e per litre (2025 c
 
 /* ---------- 1 intro ---------- */
 var CAPS = [
-  { w: t('Hải Anh', 'Hải Anh'), b: 'y', base: 20.88, v: 11.80, c: 'var(--plum)' },
-  { w: t('Hằng', 'Chị Hằng'), b: 'y', base: 33.50, v: 18.93, c: 'var(--amber)' },
-  { w: 'Tung', b: 'y', base: 41.84, v: 23.64, c: 'var(--teal)' },
-  { w: 'Tung', b: 'b', base: 43.02, v: 24.30, c: 'var(--teal)' },
-  { w: t('Hằng', 'Chị Hằng'), b: 'b', base: 43.37, v: 24.50, c: 'var(--amber)' },
-  { w: t('Hải Anh', 'Hải Anh'), b: 'b', base: 68.61, v: 38.77, c: 'var(--plum)' }
+  /* bau: that author's own 2030 BAU (a "below BAU" case starts from it) */
+  { w: t('Hải Anh', 'Hải Anh'), b: 'y', base: 20.88, v: 11.80, bau: 68.61, c: 'var(--plum)' },
+  { w: t('Hằng', 'Chị Hằng'), b: 'y', base: 33.50, v: 18.93, bau: 43.37, c: 'var(--amber)' },
+  { w: 'Tung', b: 'y', base: 41.84, v: 23.64, bau: 43.02, c: 'var(--teal)' },
+  { w: 'Tung', b: 'b', base: 43.02, v: 24.30, bau: 43.02, c: 'var(--teal)' },
+  { w: t('Hằng', 'Chị Hằng'), b: 'b', base: 43.37, v: 24.50, bau: 43.37, c: 'var(--amber)' },
+  { w: t('Hải Anh', 'Hải Anh'), b: 'b', base: 68.61, v: 38.77, bau: 68.61, c: 'var(--plum)' }
 ];
 A.CAPS = CAPS;
 SL.intro = {
@@ -889,14 +964,28 @@ var MODS = [
   { k: 'ter', t: t('Territory', 'Địa bàn'), s: t('old HP + old HD', 'HP cũ + HD cũ') },
   { k: 'cap', t: t('2030 cap', 'Mức trần 2030'), s: t('56.5% of the 2020 base', '56,5% năm cơ sở 2020') }
 ];
-var OPS = ['×', '=', 'Σ', '× 56.5%'];
+var OPS = [['×', t('times', 'nhân')], ['=', t('emissions, added up by sector', 'phát thải, cộng theo lĩnh vực')], ['Σ', t('added up by place', 'cộng theo địa bàn')], ['× 56.5%', t('keep 56.5%', 'giữ 56,5%')]];
+/* a: activity data, f: emission factor, r: result (Mt CO2e, 2020; deck figures from slides 3 and 6), rt: what the result covers */
 var SOURCES = [
-  { k: 'road', t: t('Road fuel', 'Nhiên liệu đường bộ'), m: t('litres of petrol and diesel', 'lít xăng và dầu diesel'), g: t('Energy · 1A3b road transport', 'Năng lượng · 1A3b giao thông đường bộ') },
-  { k: 'coal', t: t('Coal power', 'Nhiệt điện than'), m: t('coal burned in power plants (TJ)', 'than đốt trong nhà máy điện (TJ)'), g: t('Energy · 1A1 power', 'Năng lượng · 1A1 công nghiệp năng lượng') },
-  { k: 'cem', t: t('Cement', 'Xi măng'), m: t('tonnes of clinker made', 'tấn clinker sản xuất'), g: t('IPPU · 2A1 cement production', 'IPPU · 2A1 sản xuất xi măng') },
-  { k: 'rice', t: t('Rice', 'Lúa'), m: t('hectares of paddy and days flooded', 'diện tích lúa và số ngày ngập nước'), g: t('AFOLU · 3C7 rice cultivation', 'AFOLU · 3C7 canh tác lúa') },
-  { k: 'land', t: t('Landfill', 'Bãi chôn lấp'), m: t('tonnes of solid waste buried', 'tấn chất thải rắn chôn lấp'), g: t('Waste · 4A1 solid waste disposal', 'Chất thải · 4A1 chôn lấp CTR') }
+  { k: 'road', t: t('Road fuel', 'Nhiên liệu đường bộ'), m: t('litres of petrol and diesel', 'lít xăng và dầu diesel'), g: t('Energy · 1A3b road transport', 'Năng lượng · 1A3b giao thông đường bộ'),
+    a: t('<b>1,720</b> million litres of fuel', '<b>1.720</b> triệu lít nhiên liệu'), f: t('<b>2.66</b> kg CO2e per litre', '<b>2,66</b> kg CO2tđ mỗi lít'), r: 4.57, rt: t('old Hải Phòng road 2020 (official 4.51)', 'đường bộ Hải Phòng cũ 2020 (chính thức 4,51)') },
+  { k: 'coal', t: t('Coal power', 'Nhiệt điện than'), m: t('coal burned in power plants (TJ)', 'than đốt trong nhà máy điện (TJ)'), g: t('Energy · 1A1 power', 'Năng lượng · 1A1 công nghiệp năng lượng'),
+    a: t('coal burned, in TJ<small>Phả Lại alone: 3.12 Mt of coal, 2020</small>', 'than đốt, tính bằng TJ<small>riêng Phả Lại: 3,12 triệu tấn than, 2020</small>'), f: t('t CO2 per TJ<small>depends on the coal type</small>', 'tấn CO2 mỗi TJ<small>tùy loại than</small>'), r: 9.64, rt: t('two old Hải Dương coal plants 2020', 'hai nhà máy nhiệt điện than Hải Dương cũ 2020') },
+  { k: 'cem', t: t('Cement', 'Xi măng'), m: t('tonnes of clinker made', 'tấn clinker sản xuất'), g: t('IPPU · 2A1 cement production', 'IPPU · 2A1 sản xuất xi măng'),
+    a: t('tonnes of clinker made<small>the kiln product before grinding</small>', 'tấn clinker sản xuất<small>sản phẩm lò nung trước khi nghiền</small>'), f: t('t CO2 per tonne of clinker<small>released from the limestone itself</small>', 'tấn CO2 mỗi tấn clinker<small>thoát ra từ chính đá vôi</small>'), r: 2.47, rt: t('old Hải Dương cement 2020', 'xi măng Hải Dương cũ 2020') },
+  { k: 'rice', t: t('Rice', 'Lúa'), m: t('hectares of paddy and days flooded', 'diện tích lúa và số ngày ngập nước'), g: t('AFOLU · 3C7 rice cultivation', 'AFOLU · 3C7 canh tác lúa'),
+    a: t('hectares of paddy × days flooded', 'ha lúa × số ngày ngập nước'), f: t('kg methane per hectare per day<small>then converted to CO2e</small>', 'kg mê-tan mỗi ha mỗi ngày<small>rồi quy đổi CO2tđ</small>'), r: 1.39, rt: t('old Hải Dương rice 2020', 'lúa Hải Dương cũ 2020') },
+  { k: 'land', t: t('Landfill', 'Bãi chôn lấp'), m: t('tonnes of solid waste buried', 'tấn chất thải rắn chôn lấp'), g: t('Waste · 4A1 solid waste disposal', 'Chất thải · 4A1 chôn lấp CTR'),
+    a: t('tonnes of solid waste buried', 'tấn chất thải rắn chôn lấp'), f: t('methane released per tonne<small>minus gas captured</small>', 'mê-tan thải ra mỗi tấn<small>trừ khí thu hồi</small>'), r: 1.27, rt: t('whole old Hải Dương waste sector 2020, all sources', 'toàn bộ lĩnh vực chất thải Hải Dương cũ 2020, mọi nguồn') }
 ];
+/* the four equations behind the five boxes; EQ[i] lights up for steps EQSTEP[mod] */
+var EQ = [
+  { h: t('One source', 'Một nguồn'), f: t('activity data × emission factor = emissions', 'số liệu hoạt động × hệ số phát thải = phát thải'), x: t('1,720 M litres × 2.66 kg/L = 4.57 Mt', '1.720 triệu lít × 2,66 kg/lít = 4,57 triệu tấn') },
+  { h: t('One sector', 'Một lĩnh vực'), f: t('sum of its sources = sector total', 'tổng các nguồn = tổng lĩnh vực'), x: t('16.11 + 2.09 + 0.76 + 1.92 = 20.88 Mt', '16,11 + 2,09 + 0,76 + 1,92 = 20,88 triệu tấn') },
+  { h: t('One city', 'Cả thành phố'), f: t('old HP + old HD = merged 2020 base', 'HP cũ + HD cũ = năm cơ sở 2020 sau sáp nhập'), x: t('20.88 + 20.95 = 41.84 Mt', '20,88 + 20,95 = 41,84 triệu tấn') },
+  { h: t('The 2030 cap', 'Mức trần 2030'), f: t('56.5% × 2020 base = cap', '56,5% × năm cơ sở 2020 = mức trần'), x: t('56.5% × 41.84 = 23.64 Mt', '56,5% × 41,84 = 23,64 triệu tấn') }
+];
+var EQSTEP = { act: 0, ef: 0, sec: 1, ter: 2, cap: 3 };
 var FACTORS = [ /* QĐ 1772 report Bảng 3.10 p.35, kg CO2/TJ */
   { t: t('Natural gas', 'Khí tự nhiên'), v: 56100 }, { t: t('Petrol', 'Xăng'), v: 69300 }, { t: t('Jet fuel', 'Xăng máy bay'), v: 71500 },
   { t: 'Diesel', v: 74100 }, { t: t('Fuel oil', 'Dầu nhiên liệu'), v: 77400 }
@@ -923,7 +1012,7 @@ function donut(vals) {
 function detail() {
   var h = '', box = $('modDetail');
   if (mod === 'act') {
-    h = '<div class="detail"><div><p class="lbl">' + t('Pick a source', 'Chọn một nguồn') + '</p><div class="seg" id="srcSeg"></div></div><div id="srcCard"></div></div>';
+    h = '<div class="detail"><div><p class="lbl">' + t('Pick a source', 'Chọn một nguồn') + '</p><div class="seg vert" id="srcSeg"></div></div><div id="srcCard"></div></div>';
   } else if (mod === 'ef') {
     h = '<div class="detail"><div><p class="lbl">' + t('CO2 per TJ of fuel burned (2020 report, Bảng 3.10)', 'CO2 trên mỗi TJ nhiên liệu (báo cáo 2020, Bảng 3.10)') + '</p><div class="bars" id="efBars"></div></div><div id="efCard"></div></div>';
   } else if (mod === 'sec') {
@@ -932,15 +1021,17 @@ function detail() {
   } else if (mod === 'ter') {
     h = '<p class="lbl">' + t('Fill in old Hải Dương 2020 with:', 'Điền Hải Dương cũ 2020 theo:') + '</p><div class="seg" id="terSeg"></div>' +
       '<div class="blocks" style="margin-top:16px" id="terBlocks"><div class="c-hp" id="tb1">HP 20.88</div><div id="tb2"></div></div>' +
-      '<p style="margin-top:12px"><span class="muted">' + t('Merged 2020 base:', 'Năm cơ sở 2020 sau sáp nhập:') + '</span> <span class="mid" id="terTot">?</span> <span class="unit">Mt</span></p><p class="small muted" id="terNote"></p>';
+      '<p style="margin-top:12px"><span class="muted">' + t('Merged 2020 base:', 'Năm cơ sở 2020 sau sáp nhập:') + '</span> <span class="mid" id="terTot">?</span> <span class="unit">Mt</span></p><p class="small muted" id="terNote"></p>' +
+      '<div class="padef"><p><b>PA</b> = <i>phương án</i> (' + t('option', 'phương án') + ')</p><p><b>PA1</b> ' + t('rebuilds Hải Dương 2020 line by line, with the same methods as the official old Hải Phòng 2020 report.', 'dựng lại Hải Dương 2020 từng dòng, bằng cùng phương pháp với báo cáo chính thức Hải Phòng cũ 2020.') + '</p><p><b>PA2</b> ' + t('is the cross-check: Hải Dương\'s share of the 2025 inventory, scaled back to 2020 by activity.', 'là phép đối chiếu: phần Hải Dương trong kiểm kê 2025, suy ngược về 2020 theo số liệu hoạt động.') + '</p></div>';
   } else {
     h = '<p class="lbl">' + t('2020 base from:', 'Năm cơ sở 2020 theo:') + '</p><div class="seg" id="capB"></div>' +
       '<div class="blocks" style="margin-top:16px"><div class="c-ours" id="cb1"></div><div class="cut" id="cb2"></div></div>' +
-      '<div style="display:flex; gap:28px; margin-top:12px; flex-wrap:wrap;"><p><span class="muted">' + t('Base', 'Năm cơ sở') + '</span> <span class="mid" id="cbBase"></span></p><p><span class="muted">' + t('Cut 43.5%', 'Giảm 43,5%') + '</span> <span class="mid" style="color:var(--amber)" id="cbCut"></span></p><p><span class="muted">' + t('2030 cap', 'Mức trần 2030') + '</span> <span class="mid" style="color:var(--teal)" id="cbCap"></span></p></div>';
+      '<div style="display:flex; gap:28px; margin-top:12px; flex-wrap:wrap;"><p><span class="muted">' + t('Base', 'Năm cơ sở') + '</span> <span class="mid" id="cbBase"></span></p><p><span class="muted">' + t('Cut 43.5%', 'Giảm 43,5%') + '</span> <span class="mid" style="color:var(--amber)" id="cbCut"></span></p><p><span class="muted">' + t('2030 cap', 'Mức trần 2030') + '</span> <span class="mid" style="color:var(--teal)" id="cbCap"></span></p></div>' +
+      '<div class="padef"><p><b>' + t('Why 56.5%?', 'Vì sao 56,5%?') + '</b> ' + t('NQ 08-NQ/TU asks for a cut of at least 43.5% compared with 2020, so the city may emit at most 100% − 43.5% = 56.5% of its 2020 base in 2030.', 'NQ 08-NQ/TU yêu cầu giảm ít nhất 43,5% so với năm 2020, nên năm 2030 thành phố được phát thải tối đa 100% − 43,5% = 56,5% năm cơ sở 2020.') + '</p><p>' + t('Pick another base above and the same rule gives a different cap (slide 8).', 'Chọn năm cơ sở khác ở trên, cùng quy tắc sẽ cho mức trần khác (trang 8).') + '</p></div>';
   }
   box.innerHTML = h; A.anim(box, 'swap');
   if (mod === 'act') {
-    A.seg($('srcSeg'), SOURCES.map(function (s) { return { k: s.k, t: s.t }; }), st2.src, function (k) { st2.src = k; srcCard(); });
+    A.seg($('srcSeg'), SOURCES.map(function (s) { return { k: s.k, t: s.t, s: s.m }; }), st2.src, function (k) { st2.src = k; srcCard(); });
     srcCard();
   } else if (mod === 'ef') {
     efDraw(true);
@@ -958,8 +1049,11 @@ function detail() {
 }
 function srcCard() {
   var s = SOURCES.filter(function (x) { return x.k === st2.src; })[0];
-  $('srcCard').innerHTML = '<div class="panel deep"><h3>' + s.t + '</h3><p class="lbl" style="color:#B5D8D0; margin-top:8px">' + t('Measured as', 'Đo bằng') + '</p><p style="font-size:18px">' + s.m + '</p>' +
-    '<p class="lbl" style="color:#B5D8D0; margin-top:10px">' + t('Counted in', 'Tính vào') + '</p><p style="font-size:18px">' + s.g + '</p></div>';
+  $('srcCard').innerHTML = '<div class="panel deep srcc"><h3>' + s.t + ' <span class="small" style="color:#B5D8D0; font-weight:400">· ' + t('every source follows this recipe, only the units change', 'mọi nguồn theo cùng công thức, chỉ đơn vị khác nhau') + '</span></h3><p class="lbl" style="color:#B5D8D0; margin:0">' + t('Counted in', 'Tính vào') + ' ' + s.g + '</p>' +
+    '<div class="eqrow"><div class="eqbox"><p class="lbl">' + t('Activity data', 'Số liệu hoạt động') + '</p><p>' + s.a + '</p></div><span class="eqop">×</span>' +
+    '<div class="eqbox"><p class="lbl">' + t('Emission factor', 'Hệ số phát thải') + '</p><p>' + s.f + '</p></div><span class="eqop">=</span>' +
+    '<div class="eqbox res"><p class="lbl">' + t('Emissions', 'Phát thải') + '</p><p class="mid">' + N(s.r) + ' <span class="unit">Mt</span></p><small>' + s.rt + '</small></div></div>' +
+    '<div class="share"><div class="track"><div class="fill" style="width:' + Math.max(2, s.r / 41.84 * 100) + '%"></div></div><span class="small">' + t('<b>' + N(s.r / 41.84 * 100, 0) + '%</b> of the merged 2020 base (41.84 Mt)', '<b>' + N(s.r / 41.84 * 100, 0) + '%</b> năm cơ sở 2020 sau sáp nhập (41,84 triệu tấn)') + '</span></div></div>';
   A.anim($('srcCard'), 'swap');
 }
 function efDraw(fresh) {
@@ -986,7 +1080,7 @@ function terDraw() {
   $('tb2').style.background = h.c; $('tb2').style.width = (h.v / 42 * 100) + '%'; $('tb2').innerHTML = h.v ? 'HD ' + N(h.v) : '';
   A.count(tot, 20.88 + h.v);
   $('terNote').innerHTML = st2.hd === 'ha' ? t('Hải Dương left out: the base is old Hải Phòng alone.', 'Bỏ qua Hải Dương: năm cơ sở chỉ là Hải Phòng cũ.') :
-    st2.hd === 'hang' ? t('Typed values with no calculation behind them (slide 6 tests them).', 'Số nhập tay, không có công thức (trang 6 kiểm tra).') : t('Built line by line with the 2020 report methods (PA1).', 'Tính từng dòng theo phương pháp báo cáo 2020 (PA1).');
+    st2.hd === 'hang' ? t('Typed values with no calculation behind them (slide 6 tests them).', 'Số nhập tay, không có công thức (trang 6 kiểm tra).') : t('Built line by line with the 2020 report methods (PA1, "phương án 1"). The cross-check, PA2, scales the 2025 inventory back instead: 19.66 Mt.', 'Tính từng dòng theo phương pháp báo cáo 2020 (PA1, phương án 1). Phương án đối chiếu PA2 suy ngược từ kiểm kê 2025: 19,66 triệu tấn.');
 }
 function capDraw() {
   var b = CAPB[st2.cap].v, cap = b * 0.565;
@@ -1006,9 +1100,12 @@ SL.basics = {
     var h = '';
     MODS.forEach(function (m, i) {
       h += '<button class="mod" data-k="' + m.k + '" aria-pressed="' + (m.k === mod) + '">' + ICON[m.k] + '<b>' + m.t + '</b><span>' + m.s + '</span></button>';
-      if (i < OPS.length) h += '<div class="conn" data-i="' + i + '"><span>' + OPS[i].replace('56.5', '<span data-n="56.5" data-d="1">56.5</span>') + '</span><svg><line x1="0" y1="7" x2="54" y2="7"/></svg></div>';
+      if (i < OPS.length) h += '<div class="conn" data-i="' + i + '"><span>' + OPS[i][0].replace('56.5', '<span data-n="56.5" data-d="1">56.5</span>') + '</span><svg><line x1="0" y1="7" x2="90" y2="7"/></svg><em>' + OPS[i][1] + '</em></div>';
     });
     $('flow').innerHTML = h;
+    $('eqs').innerHTML = EQ.map(function (q, i) {
+      return '<div class="eq" data-i="' + i + '"><span class="eqn">' + (i + 1) + '</span><div><p class="eqh">' + q.h + '</p><p class="eqf">' + q.f + '</p><p class="eqx">' + q.x + '</p></div></div>';
+    }).join('');
     $('flow').addEventListener('click', function (e) {
       var b = e.target.closest('.mod'); if (!b) return;
       mod = b.getAttribute('data-k'); SL.basics.mark(); detail();
@@ -1018,6 +1115,7 @@ SL.basics = {
     var idx = MODS.findIndex(function (m) { return m.k === mod; });
     $$('#flow .mod').forEach(function (b, i) { b.setAttribute('aria-pressed', i === idx); b.classList.toggle('done', i < idx); });
     $$('#flow .conn').forEach(function (c, i) { c.classList.toggle('live', i < idx); });
+    $$('#eqs .eq').forEach(function (q, i) { q.classList.toggle('on', i === EQSTEP[mod]); });
     var a = $$('#flow .mod')[idx]; A.anim(a, 'pop');
   },
   enter: function () { SL.basics.mark(); detail(); }
@@ -1205,20 +1303,39 @@ SL.haiduong = {
 
 /* ---------- 6 sector check ---------- */
 var SEC = {
-  energy: { t: t('Energy', 'Năng lượng'), h: 8.18, o: 15.58, f: 9.64, ft: t('coal plants 9.64', 'nhiệt điện than 9,64'), pass: false,
+  energy: { t: t('Energy', 'Năng lượng'), tot: 24.29, hp: 16.11, h: 8.18, o: 15.58, f: 9.64, fl: t('Two coal power plants', 'Hai nhà máy nhiệt điện than'), inn: [[t('Coal plants', 'Nhiệt điện than'), 9.64], [t('Factory fuel', 'Nhiên liệu nhà máy'), 5.20], [t('Other', 'Khác'), 0.74]], pass: false,
     x: t('<h3>Energy fails</h3><p class="muted">Hằng\'s implied Hải Dương energy is 8.18 Mt. Hải Dương\'s two coal power plants, Phả Lại and Hải Dương TPP, emitted 9.64 Mt on their own in 2020, before any factory fuel (5.20 Mt).</p>',
       '<h3>Năng lượng: không đạt</h3><p class="muted">Năng lượng Hải Dương ngầm định của chị Hằng là 8,18 triệu tấn. Riêng hai nhà máy nhiệt điện than Phả Lại và Hải Dương đã phát thải 9,64 triệu tấn năm 2020, chưa kể nhiên liệu trong công nghiệp (5,20 triệu tấn).</p>') },
-  ippu: { t: 'IPPU', h: 1.87, o: 2.55, f: 2.47, ft: t('cement 2.47', 'xi măng 2,47'), pass: false,
+  ippu: { t: 'IPPU', tot: 3.96, hp: 2.09, h: 1.87, o: 2.55, f: 2.47, fl: t('Cement alone', 'Riêng xi măng'), inn: [[t('Cement', 'Xi măng'), 2.47], [t('Other', 'Khác'), 0.08]], pass: false,
     x: t('<h3>IPPU fails</h3><p class="muted">Implied 1.87 Mt. Cement making in Hải Dương alone released 2.47 Mt.</p>', '<h3>IPPU: không đạt</h3><p class="muted">Ngầm định 1,87 triệu tấn. Riêng sản xuất xi măng ở Hải Dương đã thải 2,47 triệu tấn.</p>') },
-  afolu: { t: 'AFOLU', h: 0.77, o: 1.56, f: 1.39, ft: t('rice 1.39', 'lúa 1,39'), pass: false,
+  afolu: { t: 'AFOLU', tot: 1.53, hp: 0.76, h: 0.77, o: 1.56, f: 1.39, fl: t('Rice fields alone', 'Riêng canh tác lúa'), inn: [[t('Rice', 'Lúa'), 1.39], [t('Other', 'Khác'), 0.17]], pass: false,
     x: t('<h3>AFOLU fails</h3><p class="muted">Implied 0.77 Mt. Hải Dương\'s rice fields alone released 1.39 Mt of methane, counted as CO2e.</p>', '<h3>AFOLU: không đạt</h3><p class="muted">Ngầm định 0,77 triệu tấn. Riêng canh tác lúa ở Hải Dương đã thải 1,39 triệu tấn mê-tan, quy đổi CO2tđ.</p>') },
-  waste: { t: t('Waste', 'Chất thải'), h: 1.79, o: 1.27, f: null, pass: true,
+  waste: { t: t('Waste', 'Chất thải'), tot: 3.71, hp: 1.92, h: 1.79, o: 1.27, f: null, pass: true,
     x: t('<h3>Waste passes</h3><p class="muted">Hằng is 0.52 Mt higher than Tung. Tung\'s Hải Dương waste rows carry wide uncertainty, so either value is acceptable.</p>', '<h3>Chất thải: đạt</h3><p class="muted">Chị Hằng cao hơn Tung 0,52 triệu tấn. Các dòng chất thải Hải Dương của Tung có độ bất định lớn, nên giá trị nào cũng chấp nhận được.</p>') },
   power: { t: t('Coal power, merged', 'Nhiệt điện than, toàn thành phố'), power: true,
     x: t('<h3>Coal power 2020: three numbers</h3><p class="muted">The report\'s new coal section starts from 16.11 Mt, which is old Hải Phòng\'s whole energy sector, with no Hải Dương. Merged coal power was 19.49 Mt (9.85 + 9.64).</p><p class="callout" style="margin-top:10px">A 43.5% cut on 19.49 Mt is 8.48 Mt, not 7.01. Credit to Hải Anh: her plant-by-plant 2030 build (20.73 Mt) is easier to check than Tung\'s sector total.</p>',
       '<h3>Nhiệt điện than 2020: ba con số</h3><p class="muted">Mục nhiệt điện than mới trong báo cáo bắt đầu từ 16,11 triệu tấn, tức toàn bộ lĩnh vực năng lượng Hải Phòng cũ, không có Hải Dương. Nhiệt điện than toàn thành phố là 19,49 triệu tấn (9,85 + 9,64).</p><p class="callout" style="margin-top:10px">Giảm 43,5% từ 19,49 triệu tấn là 8,48 triệu tấn, không phải 7,01. Ghi nhận Hải Anh: cách tính 2030 theo từng nhà máy (20,73 triệu tấn) dễ kiểm tra hơn tổng lĩnh vực của Tung.</p>') }
 };
 var sec = 'energy', seen = {};
+/* how the implied number is made, or (coal) what a 43.5% cut is on each base */
+function sub(s) {
+  var cell = function (l, v, c, extra) { return '<div class="subbox ' + c + '"><p class="lbl">' + l + '</p><p class="mid">' + N(v) + '</p>' + (extra || '') + '</div>'; };
+  if (s.power) {
+    var cut = function (base) { return '<p class="small muted">' + t('43.5% cut = ', 'Giảm 43,5% = ') + '<b>' + N(base * 0.435) + ' Mt</b></p>'; };
+    return '<div class="sub"><p class="lbl">' + t('What a 43.5% cut means on each starting number', 'Giảm 43,5% nghĩa là bao nhiêu trên từng con số xuất phát') + '</p><div class="subrow">' +
+      cell(t('Report\'s start', 'Điểm xuất phát của báo cáo'), 16.11, 'a', cut(16.11)) + '<span class="eqop dark">vs</span>' + cell(t('Merged coal power', 'Nhiệt điện than toàn thành phố'), 19.49, 'c', cut(19.49)) + '</div></div>';
+  }
+  var inside = '';
+  if (s.inn) {
+    var tot = s.inn.reduce(function (a, q) { return a + q[1]; }, 0), cols = ['var(--teal)', 'var(--hp)', 'var(--hpSoft)'], last = s.inn[s.inn.length - 1];
+    inside = '<div class="sub"><p class="lbl">' + t('Inside Tung\'s Hải Dương figure, Mt · thin slice = other, ', 'Bên trong con số Hải Dương của Tung, triệu tấn · phần mỏng = khác, ') + N(last[1]) + '</p><div class="inbar">' +
+      s.inn.map(function (q, i) { return '<div style="flex:' + q[1] + '; background:' + cols[i] + '" title="' + N(q[1]) + '"><span>' + (q[1] / tot > 0.12 ? q[0] + ' ' + N(q[1]) : '') + '</span></div>'; }).join('') + '</div></div>';
+  }
+  return '<div class="sub"><p class="lbl">' + t('How the implied number is made (Mt CO2e, 2020)', 'Cách ra con số ngầm định (triệu tấn CO2tđ, 2020)') + '</p><div class="subrow">' +
+    cell(t('Hằng\'s total for the sector', 'Tổng lĩnh vực của chị Hằng'), s.tot, 'a') + '<span class="eqop dark">−</span>' + cell(t('Official old Hải Phòng', 'Hải Phòng cũ chính thức'), s.hp, 'b') + '<span class="eqop dark">=</span>' +
+    cell(t('Implied old Hải Dương', 'Hải Dương cũ ngầm định'), s.h, 'c') + '</div>' +
+    '<p class="small muted" style="margin-top:10px">' + t('Hằng\'s sector totals come from her 33.50 Mt column. The test: is the implied Hải Dương at least as large as its biggest single source?', 'Tổng các lĩnh vực của chị Hằng nằm trong cột 33,50 triệu tấn. Phép thử: Hải Dương ngầm định có ít nhất bằng nguồn đơn lẻ lớn nhất của chính nó không?') + '</p></div>' + inside;
+}
 function secDraw(k, fresh) {
   sec = k; var s = SEC[k]; seen[k] = true;
   if (s.power) {
@@ -1229,15 +1346,17 @@ function secDraw(k, fresh) {
       { k: 'p3', l: 'Tung', s: 'HP 9.85 + HD 9.64', v: 19.49, cls: 'c-ours' }], 21, true);
     $('secVerdict').innerHTML = ''; $('secVerdict').className = 'verdict';
   } else {
-    var max = Math.max(s.h, s.o, s.f || 0) * 1.12, mk = s.f ? [{ v: s.f, t: s.ft }] : [], mk2 = s.f ? [{ v: s.f, t: '' }] : [];
-    $('secLegend').innerHTML = '<span><span class="sw c-hang"></span>' + t('Hằng, implied Hải Dương', 'Chị Hằng, Hải Dương ngầm định') + '</span><span><span class="sw c-ours"></span>Tung PA1</span>' + (s.f ? '<span>┆ ' + t('largest single source', 'nguồn đơn lẻ lớn nhất') + '</span>' : '');
-    A.bars($('secBars'), [{ k: 'h', l: HANG, v: s.h, cls: 'c-hang', marks: mk }, { k: 'o', l: 'Tung', v: s.o, cls: 'c-ours', marks: mk2 }], max, true);
+    var max = Math.max(s.h, s.o, s.f || 0) * 1.12;
+    $('secLegend').innerHTML = '<span><span class="sw c-hang"></span>' + t('Hằng, implied Hải Dương', 'Chị Hằng, Hải Dương ngầm định') + '</span><span><span class="sw c-ours"></span>Tung PA1</span>' + (s.f ? '<span><span class="sw c-hp"></span>' + t('largest single source in Hải Dương', 'nguồn đơn lẻ lớn nhất ở Hải Dương') + '</span>' : '');
+    var rows = [{ k: 'h', l: HANG, s: t('implied Hải Dương', 'Hải Dương ngầm định'), v: s.h, cls: 'c-hang' }, { k: 'o', l: 'Tung PA1', s: t('built from sources', 'dựng từ các nguồn'), v: s.o, cls: 'c-ours' }];
+    if (s.f) rows.push({ k: 'f', l: s.fl, s: t('one source, 2020', 'một nguồn, 2020'), v: s.f, cls: 'c-hp' });
+    A.bars($('secBars'), rows, max, true);
     var v = $('secVerdict');
     v.innerHTML = s.pass ? t('✓ Passes', '✓ Đạt') : t('✗ Below its own largest source', '✗ Thấp hơn nguồn lớn nhất của chính nó');
     v.className = 'verdict ' + (s.pass ? 'pass' : 'fail'); v.style.opacity = 0;
     setTimeout(function () { v.style.opacity = 1; if (!s.pass) A.anim($$('#secBars .brow')[0], 'shake'); }, 1250);
   }
-  $('secText').innerHTML = s.x; A.anim($('secText'), 'swap');
+  $('secText').innerHTML = s.x + sub(s); A.anim($('secText'), 'swap');
   $('secScore').innerHTML = ['energy', 'ippu', 'afolu', 'waste'].map(function (q) {
     var c = seen[q] ? (SEC[q].pass ? 'pass' : 'fail') : '';
     return '<span class="' + c + '">' + (seen[q] ? (SEC[q].pass ? '✓ ' : '✗ ') : '· ') + SEC[q].t + '</span>';
@@ -1248,60 +1367,85 @@ SL.sectors = {
   enter: function () { seen = {}; A.pick($('secSeg'), 'energy'); secDraw('energy', true); }
 };
 
-/* ---------- 7 calculator ---------- */
+/* ---------- 7 base and BAU ---------- */
 var HDO = { ha: { v: 0, t: 'Hải Anh', s: '0', c: 'c-ha' }, hang: { v: 12.613, t: HANG, s: '12.61', c: 'c-hang' }, t2: { v: 19.659, t: 'Tung PA2', s: '19.66', c: 'c-ours2' }, t1: { v: 20.954, t: 'Tung PA1', s: t('20.95 · proposal', '20,95 · đề xuất'), c: 'c-ours' } };
-var cs = { hd: 't1', road: 'off', basis: 'y' };
+var BAUO = { t: { v: BAU, t: 'Tung', s: '43.02', c: 'c-ours' }, hang: { v: 43.37, t: HANG, s: '43.37', c: 'c-hang' }, ha: { v: 68.61, t: 'Hải Anh', s: t('68.61 · counts industry twice', '68,61 · tính trùng công nghiệp'), c: 'c-ha' } };
+var cs = { hd: 't1', road: 'off', bau: 't' };
+var UNIT = ' <span class="unit">Mt</span>';
 function calc(fresh) {
-  var hd = HDO[cs.hd].v, lo = HP + hd, hi = lo;
-  if (cs.road === 'td') { lo = HP - ROAD + 0.72 + hd; hi = HP - ROAD + 1.15 + hd; }
-  var capLo = cs.basis === 'b' ? CAPBAU : lo * K, capHi = cs.basis === 'b' ? CAPBAU : hi * K;
-  A.countR($('kBase'), lo, hi, ' <span class="unit">Mt</span>');
-  A.countR($('kCap'), capLo, capHi, ' <span class="unit">Mt</span>');
-  A.countR($('kCut'), BAU - capHi, BAU - capLo, ' <span class="unit">Mt</span>');
-  var hpPart = cs.road === 'td' ? HP - ROAD + 0.935 : HP;
+  var hd = HDO[cs.hd].v, td = cs.road === 'td';
+  var hpLo = td ? HP - ROAD + 0.72 : HP, hpHi = td ? HP - ROAD + 1.15 : HP, hpMid = (hpLo + hpHi) / 2;
+  var lo = hpLo + hd, hi = hpHi + hd, mid = (lo + hi) / 2, bau = BAUO[cs.bau].v;
+  var en = td ? 16.11 - ROAD + 0.935 : 16.11;
+  $('hpCard').innerHTML = '<p class="lbl">' + t('Old Hải Phòng 2020 · official, fixed', 'Hải Phòng cũ 2020 · chính thức, cố định') + '</p>' +
+    '<p><span class="mid">' + A.R(hpLo, hpHi) + '</span>' + UNIT + (td ? ' <span class="small muted">' + t('(road case)', '(phương án đường bộ)') + '</span>' : '') + '</p>' +
+    '<div class="hpparts"><span><b>' + N(en) + '</b>' + t('Energy', 'Năng lượng') + '</span><span><b>2.09</b>IPPU</span><span><b>0.76</b>AFOLU</span><span><b>1.92</b>' + t('Waste', 'Chất thải') + '</span></div>' +
+    '<p class="small muted">' + t('Energy includes road transport: ', 'Năng lượng gồm giao thông đường bộ: ') + '<b>' + (td ? A.R(0.72, 1.15) : N(ROAD)) + ' Mt</b> (' + t('slide 3', 'trang 3') + ')</p>';
+  $('hpCard').innerHTML = $('hpCard').innerHTML.replace(/>(\d+)\.(\d+)</g, function (m, a, b) { return '>' + N(+(a + '.' + b)) + '<'; });
+  A.countR($('kHP'), hpLo, hpHi, UNIT);
+  A.count($('kHD'), hd, { suf: UNIT });
+  A.countR($('kBase'), lo, hi, UNIT);
+  A.count($('kBau'), bau, { suf: UNIT });
   if (fresh) { $('cS1').style.width = '0%'; $('cS2').style.width = '0%'; }
-  A.later(function () { $('cS1').style.width = (hpPart / 45 * 100) + '%'; $('cS2').style.width = (hd / 45 * 100) + '%'; });
+  A.later(function () { $('cS1').style.width = (hpMid / 45 * 100) + '%'; $('cS2').style.width = (hd / 45 * 100) + '%'; });
+  $('cS1').textContent = t2('Hải Phòng ', 'Hải Phòng ') + N(hpMid); $('cS2').textContent = hd ? t2('Hải Dương ', 'Hải Dương ') + N(hd) : '';
   $('cS2').className = HDO[cs.hd].c; $('cSw').className = 'sw ' + HDO[cs.hd].c;
-  var mid = (capLo + capHi) / 2;
   A.bars($('cBars'), [
-    { k: 'bau', l: 'BAU 2030', s: t('no new measures', 'không có biện pháp mới'), v: BAU, cls: 'c-hp' },
-    { k: 'cap', l: t('Cap', 'Mức trần'), s: cs.basis === 'b' ? t('43.5% below BAU', 'giảm 43,5% so với BAU') : t('43.5% below 2020', 'giảm 43,5% so với 2020'), v: capHi, lo: capLo < capHi - 0.005 ? capLo : null, range: true, cls: 'c-ours', marks: [{ v: mid, t: '' }] }
-  ], 45, fresh);
-  var note;
-  if (cs.basis === 'b') note = t('Below BAU ignores the 2020 base, so changing Hải Dương does nothing here. NQ 08 measures from 2020.', 'So với BAU thì không dùng năm cơ sở 2020, nên đổi Hải Dương không thay đổi gì. NQ 08 lấy mốc năm 2020.');
-  else if (cs.hd === 't1' && cs.road === 'off') note = t('The proposal: base 41.84, cap 23.64 Mt.', 'Đề xuất: năm cơ sở 41,84, mức trần 23,64 triệu tấn.');
-  else if (cs.hd === 'ha' || cs.hd === 'hang') note = t('Leaving out part of Hải Dương shrinks the base, so the cap is ', 'Thiếu một phần Hải Dương làm năm cơ sở nhỏ đi, nên mức trần chặt hơn đề xuất ') + N(23.637 - mid) + t(' Mt tighter than the proposal.', ' triệu tấn.');
-  else if (cs.road === 'td') note = t('The road case lowers the base by 3.4-3.8 Mt and the cap to about 21.5-21.7 Mt with PA1.', 'Phương án đường bộ làm năm cơ sở giảm 3,4-3,8 triệu tấn và mức trần còn khoảng 21,5-21,7 triệu tấn với PA1.');
-  else note = t('PA2 gives a cap ', 'PA2 cho mức trần thấp hơn PA1 ') + N(23.637 - mid) + t(' Mt below PA1, well inside both methods\' uncertainty.', ' triệu tấn, nằm trong độ bất định của cả hai phương pháp.');
-  $('cNote').innerHTML = note; A.anim($('cNote'), 'swap');
+    { k: 'b', l: t('2020 base', 'Năm cơ sở 2020'), s: t('merged city', 'toàn thành phố'), v: hi, lo: lo < hi - 0.005 ? lo : null, range: true, cls: 'c-hp', txt: A.R(lo, hi) + ' Mt' },
+    { k: 'u', l: 'BAU 2030', s: t('no new measures', 'không có biện pháp mới'), v: bau, cls: BAUO[cs.bau].c, marks: [{ v: mid, t: '' }], txt: N(bau) + ' Mt' }
+  ], Math.max(bau, hi) * 1.1, fresh);
+  var d = bau - mid, pct = d / mid * 100, n;
+  if (cs.hd === 't1' && !td && cs.bau === 't') n = t('The proposal: 20.88 official + 20.95 estimated = base 41.84 Mt.', 'Đề xuất: 20,88 chính thức + 20,95 ước tính = năm cơ sở 41,84 triệu tấn.');
+  else if (cs.hd === 'ha') n = t('Hải Dương left out: the base is old Hải Phòng alone.', 'Bỏ qua Hải Dương: năm cơ sở chỉ là Hải Phòng cũ.');
+  else if (cs.hd === 'hang') n = t('Hằng\'s typed 12.61 gives a base of ' + N(lo) + ' Mt, but slide 6 shows it is too low.', 'Số nhập tay 12,61 của chị Hằng cho năm cơ sở ' + N(lo) + ' triệu tấn, nhưng trang 6 cho thấy số này quá thấp.');
+  else if (td) n = t('The road case lowers the base by 3.4-3.8 Mt.', 'Phương án đường bộ làm năm cơ sở giảm 3,4-3,8 triệu tấn.');
+  else n = t('PA2 gives a base ' + N(41.836 - mid) + ' Mt below PA1, well inside both methods\' uncertainty.', 'PA2 cho năm cơ sở thấp hơn PA1 ' + N(41.836 - mid) + ' triệu tấn, nằm trong độ bất định của cả hai phương pháp.');
+  n += ' ' + t('BAU 2030 is ' + N(Math.abs(d)) + ' Mt (' + N(Math.abs(pct), 1) + '%) ' + (d >= 0 ? 'above' : 'below') + ' the base.', 'BAU 2030 ' + (d >= 0 ? 'cao' : 'thấp') + ' hơn năm cơ sở ' + N(Math.abs(d)) + ' triệu tấn (' + N(Math.abs(pct), 1) + '%).');
+  if (cs.bau === 'ha') n += ' ' + t('Hải Anh\'s BAU counts industry twice.', 'BAU của Hải Anh tính trùng công nghiệp.');
+  $('cNote').innerHTML = n; A.anim($('cNote'), 'swap');
 }
+function t2(en, vi) { return A.lang === 'vi' ? vi : en; }
 SL.calculator = {
   init: function () {
     A.seg($('cHD'), Object.keys(HDO).map(function (k) { return { k: k, t: HDO[k].t, s: HDO[k].s }; }), 't1', function (k) { cs.hd = k; calc(); });
     A.seg($('cRoad'), [{ k: 'off', t: t('Official', 'Chính thức'), s: t('4.51 · proposal', '4,51 · đề xuất') }, { k: 'td', t: t('Top-down case', 'Phương án từ trên xuống'), s: '0.72-1.15' }], 'off', function (k) { cs.road = k; calc(); });
-    A.seg($('cBasis'), [{ k: 'y', t: t('Below 2020', 'So với 2020'), s: t('NQ 08 · proposal', 'NQ 08 · đề xuất') }, { k: 'b', t: t('Below BAU', 'So với BAU'), s: '43.02' }], 'y', function (k) { cs.basis = k; calc(); });
+    A.seg($('cBau'), Object.keys(BAUO).map(function (k) { return { k: k, t: BAUO[k].t, s: BAUO[k].s }; }), 't', function (k) { cs.bau = k; calc(); });
   },
-  enter: function () { ['kBase', 'kCap', 'kCut'].forEach(function (id) { A.reset($(id)); }); calc(true); }
+  enter: function () { ['kHP', 'kHD', 'kBase', 'kBau'].forEach(function (id) { A.reset($(id)); }); calc(true); }
 };
 
 /* ---------- 8 caps ---------- */
-var capView = 'both';
+var capView = 'both', capSel = 2;
 var CAPNOTE = {
-  both: t('The percentage is fixed; the starting number moves the cap by 27 Mt. With Hải Dương counted in full, both readings land close: 23.64 vs 24.30.', 'Tỷ lệ cố định; con số xuất phát làm mức trần chênh tới 27 triệu tấn. Khi tính đủ Hải Dương, hai cách hiểu gần nhau: 23,64 so với 24,30.'),
+  both: t('The percentage is fixed; the starting number moves the cap by 27 Mt and the cut by 9.1 to 29.8 Mt. With Hải Dương counted in full, both readings land close: 23.64 vs 24.30.', 'Tỷ lệ cố định; con số xuất phát làm mức trần chênh tới 27 triệu tấn và phần phải giảm từ 9,1 đến 29,8 triệu tấn. Khi tính đủ Hải Dương, hai cách hiểu gần nhau: 23,64 so với 24,30.'),
   y: t('Below 2020, the caps differ only because Hải Dương is counted differently: 0, 12.61 or 20.95 Mt.', 'So với 2020, các mức trần khác nhau chỉ vì cách tính Hải Dương: 0; 12,61 hoặc 20,95 triệu tấn.'),
   b: t('Below BAU, the caps differ because the 2030 forecasts differ. Hải Anh\'s 68.61 Mt counts industry twice.', 'So với BAU, các mức trần khác nhau vì dự báo 2030 khác nhau. 68,61 triệu tấn của Hải Anh tính trùng công nghiệp.')
 };
 var CLS = { y: { 'var(--plum)': 'c-ha', 'var(--amber)': 'c-hang', 'var(--teal)': 'c-ours' }, b: { 'var(--plum)': 'c-ha2', 'var(--amber)': 'c-hang2', 'var(--teal)': 'c-ours2' } };
+function capKpi(c) {
+  $('capKpi').innerHTML = '<div><p class="lbl">' + t('2030 cap', 'Mức trần 2030') + '</p><p class="mid" style="color:var(--teal)">' + N(c.v) + UNIT + '</p><p class="small muted">' + t('56.5% of ', '56,5% của ') + N(c.base) + '</p></div>' +
+    '<div><p class="lbl">' + t('Cut from the starting number', 'Phần giảm so với con số xuất phát') + '</p><p class="mid" style="color:var(--amber)">' + N(c.base - c.v) + UNIT + '</p><p class="small muted">' + t('43.5% × ', '43,5% × ') + N(c.base) + '</p></div>' +
+    '<div><p class="lbl">' + t('Cut needed from 2030 BAU', 'Cần giảm so với BAU 2030') + '</p><p class="mid">' + N(c.bau - c.v) + UNIT + '</p><p class="small muted">BAU ' + N(c.bau) + ' − ' + N(c.v) + '</p></div>';
+  A.anim($('capKpi'), 'swap');
+}
 function capsDraw() {
   var rows = A.CAPS.filter(function (c) { return capView === 'both' || c.b === capView; });
+  if (!rows.some(function (c) { return c.i === capSel; })) capSel = rows[0].i;
   var box = $('capBars'), max = 70;
-  A.bars(box, rows.map(function (c, i) {
-    return { k: 'c' + i + c.b + c.v, l: c.w, s: (c.b === 'b' ? t('below BAU ', 'so với BAU ') : t('below 2020 ', 'so với 2020 ')) + N(c.base), v: c.v, from: c.base, cls: CLS[c.b][c.c], ghost: c.base };
+  A.bars(box, rows.map(function (c) {
+    return { k: 'c' + c.i, l: c.w, s: (c.b === 'b' ? t('below BAU ', 'so với BAU ') : t('below 2020 ', 'so với 2020 ')) + N(c.base), v: c.v, from: c.base, cls: CLS[c.b][c.c], ghost: c.base,
+      txt: '<b>' + N(c.v) + '</b> <span class="cutlbl">−' + N(c.base - c.v) + '</span>' };
   }), max, true);
+  $$('#capBars .brow').forEach(function (r, j) {
+    r.classList.add('pick'); r.setAttribute('aria-pressed', rows[j].i === capSel);
+    r.onclick = function () { capSel = rows[j].i; $$('#capBars .brow').forEach(function (x, q) { x.setAttribute('aria-pressed', rows[q].i === capSel); }); capKpi(A.CAPS[capSel]); };
+  });
+  capKpi(A.CAPS[capSel]);
   $('capNote').innerHTML = CAPNOTE[capView]; A.anim($('capNote'), 'swap');
 }
 SL.caps = {
   init: function () {
+    A.CAPS.forEach(function (c, i) { c.i = i; });
     A.seg($('capSeg'), [{ k: 'both', t: t('Both readings', 'Cả hai cách hiểu') }, { k: 'y', t: t('Below 2020', 'So với 2020'), s: t('what NQ 08 says', 'theo NQ 08') }, { k: 'b', t: t('Below BAU', 'So với BAU'), s: t('still in some files', 'vẫn còn trong một số tệp') }], 'both', function (k) { capView = k; capsDraw(); });
     $('capReplay').onclick = capsDraw;
   },
@@ -1317,11 +1461,44 @@ var PB = {
   ha: { t: 'Hải Anh', s: '20.88', lo: 20.882, hi: 20.882 }
 };
 var PK = {
-  none: { t: t('None', 'Không'), v: 43.02, d: t('BAU: 2030 if nothing new is done.', 'BAU: năm 2030 nếu không có biện pháp mới.') },
-  A: { t: t('Package A', 'Gói A'), s: t('decided', 'đã quyết định'), v: 41.96, d: t('Closing Phả Lại 1, alternate wetting and drying for rice, e-motorcycles. Cut 1.06 Mt.', 'Dừng Phả Lại 1, tưới khô tưới ướt xen kẽ cho lúa, xe máy điện. Giảm 1,06 triệu tấn.') },
-  B: { t: t('Package B', 'Gói B'), s: t('all listed', 'mọi biện pháp'), v: 38.10, d: t('A plus biomass co-firing at the coal plants, factory efficiency and cement measures. Cut 4.91 Mt.', 'Gói A cộng đồng đốt sinh khối ở nhà máy than, hiệu quả năng lượng trong công nghiệp và biện pháp cho xi măng. Giảm 4,91 triệu tấn.') },
-  C: { t: t('Package C', 'Gói C'), s: t('the hard ones', 'biện pháp khó'), v: 33.04, d: t('B plus 20% ammonia at Hải Phòng TPP, stopping Phả Lại 2 and capturing 70% of landfill gas. Cut 9.98 Mt.', 'Gói B cộng đồng đốt 20% amoniac ở NĐ Hải Phòng, dừng Phả Lại 2 và thu hồi 70% khí bãi chôn lấp. Giảm 9,98 triệu tấn.') }
+  none: { t: t('None', 'Không'), v: 43.02, d: t('No package. BAU: 2030 if nothing new is done. A package is a bundle of measures; tap "What is in each package?" to see them.', 'Không có gói. BAU: năm 2030 nếu không có biện pháp mới. Gói là một nhóm biện pháp; chạm "Mỗi gói gồm gì?" để xem.') },
+  A: { t: t('Package A', 'Gói A'), s: t('decided', 'đã quyết định'), v: 41.96, d: t('Only decided or planned measures: close Phả Lại 1, alternate wetting and drying for rice, e-motorcycles. Cut 1.06 Mt.', 'Chỉ các biện pháp đã quyết định hoặc đã lên kế hoạch: dừng Phả Lại 1, tưới khô tưới ướt xen kẽ cho lúa, xe máy điện. Giảm 1,06 triệu tấn.') },
+  B: { t: t('Package B', 'Gói B'), s: t('all listed', 'mọi biện pháp'), v: 38.10, d: t('Every quantified measure: A plus biomass co-firing at the coal plants, factory efficiency, cement measures and landfill gas. Cut 4.91 Mt.', 'Mọi biện pháp đã định lượng: gói A cộng đồng đốt sinh khối ở nhà máy than, hiệu quả năng lượng trong công nghiệp, biện pháp cho xi măng và khí bãi chôn lấp. Giảm 4,91 triệu tấn.') },
+  C: { t: t('Package C', 'Gói C'), s: t('the hard ones', 'biện pháp khó'), v: 33.04, d: t('B plus the hard ones: 20% ammonia at Hải Phòng TPP, stopping Phả Lại 2 and capturing 70% of landfill gas. Cut 9.98 Mt.', 'Gói B cộng các biện pháp khó: đồng đốt 20% amoniac ở NĐ Hải Phòng, dừng Phả Lại 2 và thu hồi 70% khí bãi chôn lấp. Giảm 9,98 triệu tấn.') }
 };
+/* package contents: cut_2030_tco2e from hd2020-packages2030.csv, grouped (Mt); rows are the largest measures, "others" the rest */
+var PGRP = [
+  { k: 'power', c: 'var(--amber)', t: t('Coal power', 'Nhiệt điện than') },
+  { k: 'fuel', c: 'var(--plum)', t: t('Factory fuel', 'Nhiên liệu nhà máy') },
+  { k: 'cement', c: 'var(--hp)', t: t('Cement and lime', 'Xi măng và vôi') },
+  { k: 'waste', c: 'var(--teal2)', t: t('Landfill gas', 'Khí bãi chôn lấp') },
+  { k: 'land', c: 'var(--teal)', t: t('Rice, e-bikes, mangroves', 'Lúa, xe máy điện, rừng ngập mặn') }
+];
+var PKD = {
+  A: { g: { power: 1.017, land: 0.042 },
+    h: t('Only what is already decided or planned. The floor.', 'Chỉ những gì đã quyết định hoặc đã lên kế hoạch. Mức sàn.'),
+    m: [[t('Close Phả Lại 1 coal unit', 'Dừng tổ máy than Phả Lại 1'), 1.017, 'power'], [t('Alternate wetting and drying, rice', 'Tưới khô tưới ướt xen kẽ, lúa'), 0.035, 'land'], [t('E-motorcycles', 'Xe máy điện'), 0.007, 'land']] },
+  B: { g: { power: 2.931, fuel: 0.55, cement: 1.116, waste: 0.252, land: 0.065 },
+    h: t('Every measure we could quantify. Hải Dương TPP co-firing capped at 5% by local straw.', 'Mọi biện pháp đã định lượng được. Đồng đốt ở NĐ Hải Dương giới hạn 5% do rơm rạ địa phương.'),
+    m: [[t('Biomass co-firing, 3 coal plants', 'Đồng đốt sinh khối, 3 nhà máy than'), 1.603, 'power'], [t('Cement: less clinker, LC3, close one plant', 'Xi măng: giảm clinker, LC3, đóng một nhà máy'), 1.116, 'cement'], [t('Close Phả Lại 1', 'Dừng Phả Lại 1'), 1.017, 'power'], [t('Factory efficiency, scrap, alternative fuels', 'Hiệu quả năng lượng, phế liệu, nhiên liệu thay thế'), 0.55, 'fuel'], [t('Hải Phòng TPP efficiency', 'Hiệu suất NĐ Hải Phòng'), 0.311, 'power'], [t('Landfill gas capture, 35%', 'Thu hồi khí bãi chôn lấp, 35%'), 0.252, 'waste'], [t('Rice, e-bikes, mangroves', 'Lúa, xe máy điện, rừng ngập mặn'), 0.065, 'land']] },
+  C: { g: { power: 7.745, fuel: 0.55, cement: 1.116, waste: 0.504, land: 0.065 },
+    h: t('B plus the hard ones: a second coal unit stopped, ammonia co-firing, more landfill gas.', 'Gói B cộng các biện pháp khó: dừng thêm một tổ máy than, đồng đốt amoniac, thu hồi thêm khí bãi chôn lấp.'),
+    m: [[t('Stop Phả Lại 2 coal unit', 'Dừng tổ máy than Phả Lại 2'), 4.551, 'power'], [t('20% ammonia co-firing, Hải Phòng TPP', 'Đồng đốt 20% amoniac, NĐ Hải Phòng'), 1.497, 'power'], [t('Cement: less clinker, LC3, close one plant', 'Xi măng: giảm clinker, LC3, đóng một nhà máy'), 1.116, 'cement'], [t('Close Phả Lại 1', 'Dừng Phả Lại 1'), 1.017, 'power'], [t('Factory efficiency, scrap, alternative fuels', 'Hiệu quả năng lượng, phế liệu, nhiên liệu thay thế'), 0.55, 'fuel'], [t('Landfill gas capture, 70%', 'Thu hồi khí bãi chôn lấp, 70%'), 0.504, 'waste'], [t('Other smaller measures', 'Các biện pháp nhỏ khác'), 0.744, 'power']] }
+};
+function pkDraw() {
+  var gcol = {}; PGRP.forEach(function (g) { gcol[g.k] = g.c; });
+  $('pwPk').innerHTML = '<div class="pkgrid">' + ['A', 'B', 'C'].map(function (k) {
+    var d = PKD[k], tot = Object.keys(d.g).reduce(function (a, q) { return a + d.g[q]; }, 0);
+    return '<button class="pkcard" data-k="' + k + '" aria-pressed="' + (pw.pkg === k) + '"><p class="pkh">' + PK[k].t + ' <span class="tag ' + (k === 'A' ? 'yes' : 'no') + '">' + PK[k].s + '</span></p>' +
+      '<p class="small muted pkd">' + d.h + '</p>' +
+      '<p><span class="big" style="font-size:38px">−' + N(tot) + '</span> <span class="unit">Mt ' + t('by 2030', 'đến 2030') + '</span></p>' +
+      '<div class="pkstack">' + PGRP.filter(function (g) { return d.g[g.k]; }).map(function (g) { return '<i style="width:' + (d.g[g.k] / 10 * 100) + '%; background:' + g.c + '"></i>'; }).join('') + '</div>' +
+      '<ul class="pkm">' + d.m.map(function (m) { return '<li><i class="dot" style="background:' + gcol[m[2]] + '"></i><span>' + m[0] + '</span><b>' + N(m[1]) + '</b></li>'; }).join('') + '</ul></button>';
+  }).join('') + '</div><div class="legend">' + PGRP.map(function (g) { return '<span><span class="sw" style="background:' + g.c + '"></span>' + g.t + '</span>'; }).join('') + '<span class="muted">' + t('Bar scale: 10 Mt. Rows are rounded, so they can differ from the total by 0.01. Tap a card to use it on the pathway. Source: hd2020-packages2030.csv.', 'Thang thanh: 10 triệu tấn. Các dòng đã làm tròn nên có thể lệch tổng 0,01. Chạm vào thẻ để dùng trên lộ trình. Nguồn: hd2020-packages2030.csv.') + '</span></div>';
+  $$('#pwPk .pkcard').forEach(function (c) {
+    c.onclick = function () { pw.pkg = c.getAttribute('data-k'); A.pick($('pwPkg'), pw.pkg); $$('#pwPk .pkcard').forEach(function (x) { x.setAttribute('aria-pressed', x === c); }); pwGo(); };
+  });
+}
 var pw = { base: 't1', pkg: 'none', basis: 'y', top: false, oth: false };
 var cur = null, W = 820, H = 400, ML = 50, MR = 150, MT = 24, MB = 36;
 function target() {
@@ -1392,6 +1569,7 @@ function pwGo(fresh) {
   $('pwDesc').innerHTML = PK[pw.pkg].d; A.anim($('pwDesc'), 'swap');
   $('pwLegend').innerHTML = '<span><span class="sw" style="background:var(--ink)"></span>' + t('Inventory', 'Kiểm kê') + '</span><span><span class="sw" style="background:var(--hp)"></span>BAU</span><span><span class="sw c-ours"></span>' + t('With measures', 'Có biện pháp') + '</span><span>┈ ' + t('straight path to the cap', 'lộ trình thẳng đến mức trần') + '</span><span><span class="sw" style="background:var(--amber)"></span>' + t('gap', 'khoảng thiếu') + '</span>';
   if (pwView === 'math') pwMath(fresh);
+  if (pwView === 'pk') pkDraw();
 }
 /* "2020 vs BAU" math view: extra gap = 56.5% x (own BAU 2030 - 2020 base); package-independent */
 var OWNBAU = { t1: BAU, t2: BAU, fix: BAU, hang: 43.37, ha: 68.61 };
@@ -1430,12 +1608,14 @@ function pwMath(fresh) {
   if (k === 'hang' || k === 'ha') rule += t(' Mostly because Hải Dương is left out of 2020.', ' Chủ yếu do thiếu Hải Dương trong năm 2020.');
   $('pmRule').innerHTML = rule; A.anim($('pmRule'), 'swap');
 }
+function pwShow(k) {
+  pwView = k; $('pwChart').hidden = k !== 'chart'; $('pwPk').hidden = k !== 'pk'; $('pwMath').hidden = k !== 'math';
+  if (k === 'math') pwMath(true); else if (k === 'pk') pkDraw(); else pwGo(true);
+}
 SL.pathway = {
   init: function () {
-    A.seg($('pwView'), [{ k: 'chart', t: t('Pathway', 'Lộ trình') }, { k: 'math', t: t('2020 vs BAU math', 'Phép tính 2020-BAU') }], 'chart', function (k) {
-      pwView = k; $('pwChart').hidden = k !== 'chart'; $('pwMath').hidden = k !== 'math';
-      if (k === 'math') pwMath(true); else pwGo(true);
-    });
+    A.seg($('pwView'), [{ k: 'chart', t: t('Pathway', 'Lộ trình') }, { k: 'pk', t: t('Packages', 'Các gói') }, { k: 'math', t: t('2020 vs BAU math', 'Phép tính 2020-BAU') }], 'chart', function (k) { pwShow(k); });
+    $('pwPkBtn').onclick = function () { pwShow('pk'); A.pick($('pwView'), 'pk'); };
     A.seg($('pwBase'), Object.keys(PB).map(function (k) { return { k: k, t: PB[k].t, s: PB[k].s }; }), 't1', function (k) { pw.base = k; pwGo(); });
     A.seg($('pwPkg'), Object.keys(PK).map(function (k) { return { k: k, t: PK[k].t, s: PK[k].s }; }), 'none', function (k) { pw.pkg = k; pwGo(); });
     A.seg($('pwBasis'), [{ k: 'y', t: t('2020', '2020'), s: 'NQ 08' }, { k: 'b', t: 'BAU', s: '43.02' }], 'y', function (k) { pw.basis = k; pwGo(); });
