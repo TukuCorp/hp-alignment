@@ -126,6 +126,8 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--teal2); out
 .face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 8px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); }
 .face.back { transform: rotateY(180deg); background: var(--deep); color: var(--onDeep); border-color: var(--deep); }
 .face.back .muted { color: #B5D8D0; }
+/* phone: stack both faces in one grid cell so the card takes the taller face's height */
+@media (max-width: 899px) { .flip-in { display: grid; } .face { position: relative; inset: auto; grid-area: 1 / 1; } .body.c3 { grid-template-rows: none !important; } }
 .tnum { font-size: 32px; font-weight: 700; color: var(--teal2); line-height: 1; }
 .tstat { font-size: 26px; font-weight: 700; color: var(--teal); font-variant-numeric: tabular-nums; }
 .hint { margin-top: auto; font-size: 13px; color: var(--teal2); font-weight: 700; }
@@ -228,6 +230,7 @@ input[type=range] { width: 100%; accent-color: var(--teal); margin: 0; height: 2
 .drawer b { color: #B5D8D0; }
 .drawer .x { float: right; border: 0; background: transparent; color: #B5D8D0; font-size: 22px; cursor: pointer; line-height: 1; }
 .plain-on .drawer { transform: none; }
+.app:not(.plain-on) .drawer { visibility: hidden; transition: transform .45s cubic-bezier(.2,.7,.2,1), visibility 0s .45s; }
 .plain { display: none; }
 @media (max-width: 899px) { .drawer { top: auto; height: 55%; width: 100%; transform: translateY(calc(100% + 70px)); } }
 .pathway svg { width: 100%; height: auto; display: block; overflow: visible; }
