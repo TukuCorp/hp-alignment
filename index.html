@@ -483,7 +483,7 @@ input[type=range] { width: 100%; accent-color: var(--teal); margin: 0; height: 2
 </div>
 </div>
 <div class="plain"><span class="en"><b>In plain words.</b> To set a 2020 base for the merged city, someone has to estimate Hải Dương 2020. Hải Anh's summary sheet leaves it out and her sector sheets borrow Hằng's figure. Hằng's column holds typed numbers with no calculation behind them. The team calc tool (18 Nov) scales old Hải Phòng by typed ratios. Tung built it line by line, two ways: with the same methods as the official Hải Phòng 2020 report (PA1), and by scaling Hải Dương's part of the 2025 inventory back to 2020 (PA2). The two land 1.3 Mt apart.</span><span class="vi"><b>Nói đơn giản.</b> Để có năm cơ sở 2020 cho thành phố sau sáp nhập, cần ước tính Hải Dương 2020. Sheet tổng hợp của Hải Anh bỏ qua phần này, còn các sheet lĩnh vực mượn số của chị Hằng. Cột 2020 của chị Hằng là các số nhập tay, không có công thức. Công cụ tính của nhóm (18/11) nhân Hải Phòng cũ với các tỷ lệ nhập tay. Tung tính từng dòng theo hai cách: dùng cùng phương pháp với báo cáo chính thức Hải Phòng 2020 (PA1), và suy ngược phần Hải Dương trong kiểm kê 2025 về năm 2020 (PA2). Hai kết quả chênh nhau 1,3 triệu tấn.</span></div>
-<p class="src" data-refs="hd21 hd24 ppc20 ppc25 ngtk20 ngtk24 inv25 ipcc"><span class="en">Hải Anh: v6 18 Nov 'nội suy 2020' H4, 'Nhiệt điện' F32, 'Xi măng' D28:D30, 'các lĩnh vực khác' D42:D44; Hằng: BAU tool, Tổng hợp C3:C8; team: calc tool 'HDHP (2020) PV1 - Tỷ lệ' O, Q3, V6, V15</span><span class="vi">Hải Anh: v6 18/11 'nội suy 2020' H4, 'Nhiệt điện' F32, 'Xi măng' D28:D30, 'các lĩnh vực khác' D42:D44; chị Hằng: công cụ BAU, Tổng hợp C3:C8; nhóm: công cụ tính 'HDHP (2020) PV1 - Tỷ lệ' cột O, Q3, V6, V15</span></p>
+<p class="src" data-refs="hd21 hd24 ppc20 ppc25 ngtk20 ngtk24 inv25 ipcc"><span class="en">Hải Anh: v6 18 Nov 'nội suy 2020' H4:H8, E12, E16, E20, 'Nhiệt điện' G3:G7, F32, 'Xi măng' D28:D30, 'các lĩnh vực khác' D42:D44; Hằng: BAU tool, Tổng hợp C3:C8; team: calc tool 'HDHP (2020) PV1 - Tỷ lệ' O, Q3, V6, V15</span><span class="vi">Hải Anh: v6 18/11 'nội suy 2020' H4:H8, E12, E16, E20, 'Nhiệt điện' G3:G7, F32, 'Xi măng' D28:D30, 'các lĩnh vực khác' D42:D44; chị Hằng: công cụ BAU, Tổng hợp C3:C8; nhóm: công cụ tính 'HDHP (2020) PV1 - Tỷ lệ' cột O, Q3, V6, V15</span></p>
 </section>
 
 <!-- 6 -->
@@ -1000,7 +1000,7 @@ var SECT = { /* Mt CO2e, 2020 */
 };
 var SNAMES = [t('Energy', 'Năng lượng'), 'IPPU', 'AFOLU', t('Waste', 'Chất thải')];
 var SCOL = ['var(--teal)', 'var(--amber)', 'var(--plum)', 'var(--hp)'];
-var HDV = { ha: { v: 0, t: 'Hải Anh', c: 'var(--plum)' }, hang: { v: 12.61, t: t('Hằng', 'Chị Hằng'), c: 'var(--amber)' }, tung: { v: 20.95, t: 'Tung', c: 'var(--teal)' } };
+var HDV = { ha: { v: 12.61, t: 'Hải Anh', c: 'var(--plum)' }, hang: { v: 12.61, t: t('Hằng', 'Chị Hằng'), c: 'var(--amber)' }, tung: { v: 20.95, t: 'Tung', c: 'var(--teal)' } };
 var CAPB = { tung: { v: 41.84, t: 'Tung' }, hang: { v: 33.50, t: t('Hằng', 'Chị Hằng') }, ha: { v: 20.88, t: 'Hải Anh' } };
 var mod = 'act', st2 = { src: 'road', ef: 3, sec: 'hp', hd: null, cap: 'tung' };
 
@@ -1083,7 +1083,7 @@ function terDraw() {
   if (!h) { $('tb2').style.width = '0%'; tot.textContent = '?'; $('terNote').innerHTML = t('Tap a name. No official 2020 inventory exists for old Hải Dương.', 'Chạm vào một tên. Hải Dương cũ chưa có kiểm kê chính thức năm 2020.'); return; }
   $('tb2').style.background = h.c; $('tb2').style.width = (h.v / 42 * 100) + '%'; $('tb2').innerHTML = h.v ? 'HD ' + N(h.v) : '';
   A.count(tot, 20.88 + h.v);
-  $('terNote').innerHTML = st2.hd === 'ha' ? t('Hải Dương left out: the base is old Hải Phòng alone.', 'Bỏ qua Hải Dương: năm cơ sở chỉ là Hải Phòng cũ.') :
+  $('terNote').innerHTML = st2.hd === 'ha' ? t('Implied by her sector sheets: their 33.50 merged base minus old Hải Phòng 20.88, the same 12.61 as Hằng.', 'Ngầm định từ các sheet lĩnh vực: tổng 33,50 trừ 20,88 Hải Phòng cũ, trùng 12,61 của chị Hằng.') :
     st2.hd === 'hang' ? t('Typed values with no calculation behind them (slide 6 tests them).', 'Số nhập tay, không có công thức (trang 6 kiểm tra).') : t('Built line by line with the 2020 report methods (PA1, "phương án 1"). The cross-check, PA2, scales the 2025 inventory back instead: 19.66 Mt.', 'Tính từng dòng theo phương pháp báo cáo 2020 (PA1, phương án 1). Phương án đối chiếu PA2 suy ngược từ kiểm kê 2025: 19,66 triệu tấn.');
 }
 function capDraw() {
@@ -1248,9 +1248,10 @@ var HANG = t('Hằng', 'Chị Hằng');
 
 /* ---------- 5 Hải Dương ---------- */
 var WHO = {
-  ha: { n: 'Hải Anh', c: 'var(--plum)', v: 0, sec: [0, 0, 0, 0], line: t('0 in \'nội suy 2020\'; 12.61 via Hằng in her sector sheets', '0 ở \'nội suy 2020\'; 12,61 qua chị Hằng ở các sheet lĩnh vực'),
-    d: t('Her 18 Nov file has two 2020 bases. \'nội suy 2020\' splits old Hải Phòng\'s 20.88 Mt by the merged city\'s 2025 shares, so Hải Dương is 0 and coal power comes out 10.90, above old Hải Phòng\'s own 2025 coal power (7.23). Her sector sheets instead start from Hằng\'s 33.50 merged total, so they carry Hằng\'s 12.61 for Hải Dương: coal power 16.43, cement 4.90, steel 3.87. Neither builds Hải Dương from its own plants. Setting both to 41.84 fixes it; her table layout works as it is.',
-      'Tệp ngày 18/11 của Hải Anh có hai năm cơ sở 2020. Sheet \'nội suy 2020\' chia 20,88 triệu tấn của Hải Phòng cũ theo cơ cấu 2025 của thành phố sau sáp nhập, nên Hải Dương bằng 0 và nhiệt điện than ra 10,90, cao hơn cả nhiệt điện than 2025 của riêng Hải Phòng cũ (7,23). Các sheet lĩnh vực lại bắt đầu từ tổng 33,50 của chị Hằng, nên mang theo 12,61 của chị Hằng cho Hải Dương: nhiệt điện than 16,43, xi măng 4,90, thép 3,87. Cả hai đều không dựng Hải Dương từ các nhà máy của chính nó. Đổi cả hai thành 41,84 là đúng; bố cục bảng giữ nguyên được.') },
+  /* derived from Hải Anh v6 (18 Nov): sector sheets' merged 2020 (Nhiệt điện!G3:G7 = 33.50) minus her old-HP sheet ('nội suy 2020'!H4:H8 = 20.88) */
+  ha: { n: 'Hải Anh', c: 'var(--plum)', v: 12.61, sec: [8.18, 1.87, 0.77, 1.79], line: t('implied: her sector sheets\' 33.50 minus old HP 20.88', 'ngầm định: 33,50 ở các sheet lĩnh vực trừ 20,88 Hải Phòng cũ'),
+    d: t('Her file never states a Hải Dương figure, but it implies one. Her sector sheets start from a merged 2020 of 33.50 Mt (Nhiệt điện!G3, Hằng\'s total) and split it with 2025 shares; her \'nội suy 2020\' sheet does the same split on old Hải Phòng\'s 20.88 (H4). The difference is her Hải Dương: 12.61 Mt, the same as Hằng\'s because it is borrowed. By plant group it is coal power 5.54 (16.43 − 10.90), cement 2.14 (4.90 − 2.76) and steel 1.32 (3.87 − 2.55). Hải Dương\'s two coal plants alone emitted 9.64 Mt in 2020 (PA1). On 41.84 her sheets work as they are.',
+      'Tệp của Hải Anh không ghi trực tiếp số Hải Dương nhưng ngầm định một số. Các sheet lĩnh vực bắt đầu từ tổng 2020 toàn thành phố 33,50 triệu tấn (Nhiệt điện!G3, tổng của chị Hằng) rồi chia theo cơ cấu 2025; sheet \'nội suy 2020\' chia tương tự trên 20,88 của Hải Phòng cũ (H4). Phần chênh là Hải Dương của Hải Anh: 12,61 triệu tấn, trùng với chị Hằng vì lấy từ chị Hằng. Theo nhóm nguồn: nhiệt điện than 5,54 (16,43 − 10,90), xi măng 2,14 (4,90 − 2,76), thép 1,32 (3,87 − 2,55). Riêng hai nhà máy nhiệt điện than của Hải Dương đã thải 9,64 triệu tấn năm 2020 (PA1). Với năm cơ sở 41,84, các sheet của Hải Anh dùng được ngay.') },
   hang: { n: HANG, c: 'var(--amber)', v: 12.613, sec: [8.18, 1.87, 0.77, 1.79], line: t('33.50 merged minus 20.88', '33,50 tổng trừ 20,88'),
     d: t('Her 2020 column totals 33.50 Mt. The cells are typed values copied from the report text; the sheet meant for the estimate is empty. Subtracting the official 20.88 leaves 12.61. Slide 6 tests it sector by sector.',
       'Cột 2020 của chị Hằng có tổng 33,50 triệu tấn. Các ô là số nhập tay chép từ báo cáo; sheet dành cho ước tính còn trống. Trừ 20,88 chính thức còn 12,61. Trang 6 kiểm tra theo từng lĩnh vực.') },
@@ -1288,8 +1289,7 @@ function whoDraw(fresh) {
 function rangeDraw() {
   var lo = 0, span = 26, x = function (v) { return ((v - lo) / span * 100) + '%'; };
   var h = '<p class="lbl">' + t('Hải Dương 2020, Mt, with 95% ranges', 'Hải Dương 2020, triệu tấn, khoảng tin cậy 95%') + '</p><div class="range">' +
-    '<div class="vline" style="left:' + x(0) + '; border-color:var(--plum)"></div><span class="rtick" style="left:' + x(0) + '; bottom:auto; top:-20px; transform:translateX(4px); color:var(--plum); font-weight:700">Hải Anh 0</span>' +
-    '<div class="vline" style="left:' + x(12.61) + '"></div><span class="rtick" style="left:' + x(12.61) + '; bottom:auto; top:-20px; transform:translateX(6px); color:var(--amber); font-weight:700">' + HANG + ' ' + N(12.61) + '</span>' +
+    '<div class="vline" style="left:' + x(12.61) + '"></div><span class="rtick" style="left:' + x(12.61) + '; bottom:auto; top:-20px; transform:translateX(6px); font-weight:700"><span style="color:var(--amber)">' + HANG + '</span> = <span style="color:var(--plum)">Hải Anh</span> ' + N(12.61) + '</span>' +
     '<div class="vline" style="left:' + x(21.43) + '; border-color:var(--sky)"></div><span class="rtick" style="left:' + x(21.43) + '; bottom:auto; top:-20px; transform:translateX(6px); color:var(--sky); font-weight:700">' + t('Team ', 'Nhóm ') + N(21.43) + '</span>' +
     '<div class="band off" style="left:' + x(17.45) + '; width:' + (7.0 / span * 100) + '%; top:4px;"></div><div class="rdot" style="left:' + x(20.95) + '; top:-1px;"></div>' +
     '<div class="band off" style="left:' + x(15.93) + '; width:' + (7.46 / span * 100) + '%; top:42px; background:var(--hpSoft); border-color:var(--hp);"></div><div class="rdot" style="left:' + x(19.66) + '; top:37px; background:var(--hp);"></div>' +
@@ -1376,7 +1376,7 @@ SL.sectors = {
 };
 
 /* ---------- 7 base and BAU ---------- */
-var HDO = { ha: { v: 0, t: 'Hải Anh', s: '0', c: 'c-ha' }, hang: { v: 12.613, t: HANG, s: '12.61', c: 'c-hang' }, team: { v: 21.43, t: t('Team calc tool', 'Công cụ tính của nhóm'), s: t('21.43 · 18 Nov', '21,43 · 18/11'), c: 'c-team' }, t2: { v: 19.659, t: 'Tung PA2', s: '19.66', c: 'c-ours2' }, t1: { v: 20.954, t: 'Tung PA1', s: t('20.95 · proposal', '20,95 · đề xuất'), c: 'c-ours' } };
+var HDO = { ha: { v: 12.613, t: 'Hải Anh', s: t('12.61 · implied', '12,61 · ngầm định'), c: 'c-ha' }, hang: { v: 12.613, t: HANG, s: '12.61', c: 'c-hang' }, team: { v: 21.43, t: t('Team calc tool', 'Công cụ tính của nhóm'), s: t('21.43 · 18 Nov', '21,43 · 18/11'), c: 'c-team' }, t2: { v: 19.659, t: 'Tung PA2', s: '19.66', c: 'c-ours2' }, t1: { v: 20.954, t: 'Tung PA1', s: t('20.95 · proposal', '20,95 · đề xuất'), c: 'c-ours' } };
 var BAUO = { t: { v: BAU, t: 'Tung', s: '43.02', c: 'c-ours' }, hang: { v: 43.37, t: HANG, s: '43.37', c: 'c-hang' }, ha: { v: 68.61, t: 'Hải Anh', s: t('68.61 · counts industry twice', '68,61 · tính trùng công nghiệp'), c: 'c-ha' } };
 var cs = { hd: 't1', road: 'off', bau: 't' };
 var UNIT = ' <span class="unit">Mt</span>';
@@ -1404,7 +1404,7 @@ function calc(fresh) {
   ], Math.max(bau, hi) * 1.1, fresh);
   var d = bau - mid, pct = d / mid * 100, n;
   if (cs.hd === 't1' && !td && cs.bau === 't') n = t('The proposal: 20.88 official + 20.95 estimated = base 41.84 Mt.', 'Đề xuất: 20,88 chính thức + 20,95 ước tính = năm cơ sở 41,84 triệu tấn.');
-  else if (cs.hd === 'ha') n = t('Hải Dương left out: the base is old Hải Phòng alone.', 'Bỏ qua Hải Dương: năm cơ sở chỉ là Hải Phòng cũ.');
+  else if (cs.hd === 'ha') n = t('Hải Anh\'s sector sheets imply 12.61 for Hải Dương (33.50 − 20.88), borrowed from Hằng: base ' + N(lo) + ' Mt, too low (slide 6).', 'Các sheet lĩnh vực của Hải Anh ngầm định Hải Dương 12,61 (33,50 − 20,88), lấy từ chị Hằng: năm cơ sở ' + N(lo) + ' triệu tấn, quá thấp (trang 6).');
   else if (cs.hd === 'hang') n = t('Hằng\'s typed 12.61 gives a base of ' + N(lo) + ' Mt, but slide 6 shows it is too low.', 'Số nhập tay 12,61 của chị Hằng cho năm cơ sở ' + N(lo) + ' triệu tấn, nhưng trang 6 cho thấy số này quá thấp.');
   else if (cs.hd === 'team') n = t('The team calc tool\'s 21.43 gives a base of ' + N(lo) + ' Mt, 0.48 Mt above PA1, but coal power is too low and road too high (slide 5).', 'Số 21,43 của công cụ tính của nhóm cho năm cơ sở ' + N(lo) + ' triệu tấn, cao hơn PA1 0,48 triệu tấn, nhưng nhiệt điện than quá thấp và đường bộ quá cao (trang 5).');
   else if (td) n = t('The road case lowers the base by 3.4-3.8 Mt.', 'Phương án đường bộ làm năm cơ sở giảm 3,4-3,8 triệu tấn.');
