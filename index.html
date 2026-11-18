@@ -245,6 +245,20 @@ input[type=range] { width: 100%; accent-color: var(--teal); margin: 0; height: 2
 @media (max-width: 899px) { .drawer { top: auto; height: 55%; width: 100%; transform: translateY(calc(100% + 70px)); } }
 .pathway svg { width: 100%; height: auto; display: block; overflow: visible; }
 .pathway text { font-family: var(--font); }
+.pmath { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 22px; margin-top: 6px; }
+.pmath[hidden] { display: none; }
+.pmcol { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.bars.tight { gap: 7px; }
+.bars.tight .track { height: 20px; }
+.bars.tight .blabel { font-size: 13.5px; }
+.bars.tight .blabel small { font-size: 11.5px; }
+.pmeq { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 18px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.pmeq .t { border: 1.5px solid var(--line); border-radius: 10px; padding: 5px 10px; background: var(--surface); opacity: 0; transform: translateY(8px); transition: opacity .35s, transform .35s; }
+.pmeq .t.in { opacity: 1; transform: none; }
+.pmeq .t small { display: block; font-size: 11px; font-weight: 400; color: var(--muted); }
+.pmeq .op { color: var(--muted); }
+.pmeq .res { border-color: var(--amber); color: var(--amber); font-size: 22px; }
+@media (max-width: 899px) { .pmath { grid-template-columns: minmax(0, 1fr); } }
 .dec { display: flex; flex-direction: column; gap: 9px; position: relative; overflow: hidden; }
 .dec label { font-size: 12.5px; color: #B5D8D0; font-weight: 700; }
 .dec input[type=text] { font: inherit; width: 100%; padding: 7px 10px; border-radius: 8px; border: 1px solid #2E5A52; background: #0E4A42; color: var(--onDeep); }
@@ -261,6 +275,8 @@ input[type=range] { width: 100%; accent-color: var(--teal); margin: 0; height: 2
 .count { display: none; flex: 1; text-align: center; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; }
 @media (max-width: 560px) { .dots { display: none; } .count { display: block; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+.fill.dim { opacity: .35; }
+.fit #pwChart { flex: 1 1 0; min-height: 0; display: flex; flex-direction: column; } .fit #pwChart[hidden] { display: none; } .fit #pwSvg { flex: 1 1 0; min-height: 0; height: 100%; }
 </style>
 <!-- Bilingual text is written <span class="en">English</span><span class="vi">Tiếng Việt</span>; build_alignment.py expands it to .en/.vi spans. Terms follow hp/translate-2026-10-23/glossary.md. -->
 <div class="app" id="app">
@@ -490,9 +506,25 @@ input[type=range] { width: 100%; accent-color: var(--teal); margin: 0; height: 2
 <div style="display:flex; gap:24px; align-items:baseline; flex-wrap:wrap;">
 <p><span class="big" id="pwGap">19.38</span> <span class="unit"><span class="en">Mt above the cap in 2030</span><span class="vi">triệu tấn vượt mức trần năm 2030</span></span></p>
 <p class="small muted" id="pwTrend"></p>
+<div class="seg" id="pwView" style="margin-left:auto"></div>
 </div>
+<div id="pwChart">
 <svg id="pwSvg" viewBox="0 0 820 400" role="img" aria-label="Emission pathway chart"></svg>
 <div class="legend" id="pwLegend"></div>
+</div>
+<div id="pwMath" class="pmath" hidden>
+<div class="pmcol">
+<p class="lbl"><span class="en">Step 1. Two starting numbers, same 2030 emissions</span><span class="vi">Bước 1. Hai con số xuất phát, cùng mức phát thải 2030</span></p>
+<div class="bars tight" id="pmBars"></div>
+<p class="lbl" style="margin-top:6px"><span class="en">Step 2. The extra gap is 56.5% of the difference</span><span class="vi">Bước 2. Khoảng thiếu thêm bằng 56,5% phần chênh lệch</span></p>
+<div class="pmeq" id="pmEq"></div>
+</div>
+<div class="pmcol">
+<p class="lbl"><span class="en">Step 3. Extra gap, every base (Mt)</span><span class="vi">Bước 3. Thiếu thêm, mọi năm cơ sở (triệu tấn)</span></p>
+<div class="bars tight" id="pmAll"></div>
+<p class="callout small" id="pmRule"></p>
+</div>
+</div>
 </div>
 </div>
 <div class="plain"><span class="en"><b>In plain words.</b> The line on the left is what the inventories say: the 2020 base, then 39.50 Mt in 2025. After 2025 the grey dashed line is business as usual and the teal line is what each package of measures achieves. The dotted line is the straight path from the 2020 base to the cap. The number at the top is the gap left in 2030. Even package C leaves about 9 Mt, mostly coal power, and coal plant dispatch is decided nationally, not by the city.</span><span class="vi"><b>Nói đơn giản.</b> Đoạn bên trái là số liệu kiểm kê: năm cơ sở 2020, rồi 39,50 triệu tấn năm 2025. Sau 2025, đường nét đứt màu xám là BAU, đường màu xanh là kết quả của từng gói biện pháp. Đường chấm là lộ trình thẳng từ năm cơ sở 2020 đến mức trần. Con số phía trên là khoảng cách còn lại năm 2030. Ngay cả gói C vẫn còn khoảng 9 triệu tấn, chủ yếu từ nhiệt điện than, mà việc huy động nhà máy than do trung ương quyết định, không phải thành phố.</span></div>
@@ -1101,7 +1133,7 @@ SL['road-fix'] = {
 'use strict';
 var A = window.A, $ = A.$, $$ = A.$$, t = A.t, N = A.N;
 var SL = window.SL = window.SL || {};
-var HP = 20.882, ROAD = 4.513, BAU = 43.02, CAPBAU = 24.30, K = 0.565, INV25 = 39.50;
+var HP = 20.882, ROAD = 4.513, BAU = 43.0162, /* hd2020-bau2030.csv total 43,016,199 t */ CAPBAU = 24.30, K = 0.565, INV25 = 39.50;
 var HANG = t('Hằng', 'Chị Hằng');
 
 /* ---------- 5 Hải Dương ---------- */
@@ -1348,12 +1380,48 @@ function pwGo(fresh) {
   if (fresh) A.reset($('pwGap'));
   A.count($('pwGap'), endShow - cap);
   var base = (to.lo + to.hi) / 2, ch = (INV25 + (pw.top ? 0.75 : 0) - base) / base * 100;
-  $('pwTrend').innerHTML = t('2020 → 2025: ', '2020 → 2025: ') + (ch >= 0 ? '+' : '') + N(ch, 1) + '%' + (pw.top ? t(' with the 2025 road top-up', ' khi bổ sung đường bộ 2025') : '');
+  $('pwTrend').innerHTML = t('2020 → 2025: ', '2020 → 2025: ') + (ch >= 0 ? '+' : '') + N(ch, 1) + '%' + (pw.top ? t(' (road top-up)', ' (bổ sung đường bộ)') : '');
   $('pwDesc').innerHTML = PK[pw.pkg].d; A.anim($('pwDesc'), 'swap');
   $('pwLegend').innerHTML = '<span><span class="sw" style="background:var(--ink)"></span>' + t('Inventory', 'Kiểm kê') + '</span><span><span class="sw" style="background:var(--hp)"></span>BAU</span><span><span class="sw c-ours"></span>' + t('With measures', 'Có biện pháp') + '</span><span>┈ ' + t('straight path to the cap', 'lộ trình thẳng đến mức trần') + '</span><span><span class="sw" style="background:var(--amber)"></span>' + t('gap', 'khoảng thiếu') + '</span>';
+  if (pwView === 'math') pwMath(fresh);
+}
+/* "2020 vs BAU" math view: extra gap = 56.5% x (own BAU 2030 - 2020 base); package-independent */
+var OWNBAU = { t1: BAU, t2: BAU, fix: BAU, hang: 43.37, ha: 68.61 };
+var OWNCLS = { t1: 'c-ours', t2: 'c-ours2', fix: 'c-ours', hang: 'c-hang', ha: 'c-ha' };
+var pwView = 'chart';
+function pwMath(fresh) {
+  var k = pw.base, b = PB[k], bau = OWNBAU[k], rng = b.lo < b.hi - 0.005;
+  var max = Math.max(bau, b.hi) * 1.04;
+  A.bars($('pmBars'), [
+    { k: 'b', l: t('2020 base', 'Năm cơ sở 2020'), s: b.t, v: b.hi, lo: rng ? b.lo : null, range: rng, cls: 'c-hp' },
+    { k: 'u', l: 'BAU 2030', s: k === 'hang' ? HANG : k === 'ha' ? 'Hải Anh' : 'Tung', v: bau, cls: 'c-hp', marks: [{ v: (b.lo + b.hi) / 2, t: '' }] },
+    { k: 'c1', l: t('Cap vs 2020', 'Trần so với 2020'), s: '56.5% × ' + A.R(b.lo, b.hi), v: b.hi * K, lo: rng ? b.lo * K : null, range: rng, cls: 'c-ours' },
+    { k: 'c2', l: t('Cap vs BAU', 'Trần so với BAU'), s: '56.5% × ' + N(bau), v: bau * K, cls: 'c-ours2' }
+  ], max, fresh);
+  var dLo = bau - b.hi, dHi = bau - b.lo;
+  $('pmEq').innerHTML = [
+    ['t', '(' + N(bau), 'BAU 2030'], ['op', '−'], ['t', A.R(b.lo, b.hi) + ')', t('2020 base', 'năm cơ sở 2020')],
+    ['op', '='], ['t', A.R(dLo, dHi), t('difference', 'chênh lệch')], ['op', '×'], ['t', N(56.5, 1) + '%', t('kept', 'giữ lại')],
+    ['op', '='], ['t res', A.R(dLo * K, dHi * K) + ' Mt', t('extra gap', 'thiếu thêm')]
+  ].map(function (x) { return '<span class="' + x[0] + '">' + x[1] + (x[2] ? '<small>' + x[2] + '</small>' : '') + '</span>'; }).join('');
+  $$('#pmEq .t').forEach(function (el, i) { setTimeout(function () { el.classList.add('in'); }, 250 + i * 220); });
+  A.bars($('pmAll'), Object.keys(PB).map(function (q) {
+    var p = PB[q], u = OWNBAU[q], r = p.lo < p.hi - 0.005;
+    return { k: q, l: p.t, s: p.s + ' → BAU ' + u.toFixed(2), v: (u - p.lo) * K, lo: r ? (u - p.hi) * K : null, range: r, cls: OWNCLS[q] + (q === k ? '' : ' dim') };
+  }), 28, fresh);
+  var rule = dLo > 0
+    ? t('Base below BAU, so the 2020 cap is lower and the gap bigger. Packages cut both readings equally.', 'Năm cơ sở thấp hơn BAU, nên trần so với 2020 thấp hơn, khoảng thiếu lớn hơn. Các gói biện pháp giảm như nhau ở cả hai cách.')
+    : t('2020 base above BAU 2030, so the cap measured from 2020 is the looser one.', 'Năm cơ sở 2020 cao hơn BAU 2030, nên mức trần so với 2020 lại lỏng hơn.');
+  if (k === 't1' || k === 't2') rule += t(' Here it is under 1.5 Mt, inside Hải Dương\'s ±3.5 Mt uncertainty.', ' Ở đây chênh dưới 1,5 triệu tấn, nằm trong độ bất định ±3,5 triệu tấn của Hải Dương.');
+  if (k === 'hang' || k === 'ha') rule += t(' Mostly because Hải Dương is left out of 2020.', ' Chủ yếu do thiếu Hải Dương trong năm 2020.');
+  $('pmRule').innerHTML = rule; A.anim($('pmRule'), 'swap');
 }
 SL.pathway = {
   init: function () {
+    A.seg($('pwView'), [{ k: 'chart', t: t('Pathway', 'Lộ trình') }, { k: 'math', t: t('2020 vs BAU math', 'Phép tính 2020-BAU') }], 'chart', function (k) {
+      pwView = k; $('pwChart').hidden = k !== 'chart'; $('pwMath').hidden = k !== 'math';
+      if (k === 'math') pwMath(true); else pwGo(true);
+    });
     A.seg($('pwBase'), Object.keys(PB).map(function (k) { return { k: k, t: PB[k].t, s: PB[k].s }; }), 't1', function (k) { pw.base = k; pwGo(); });
     A.seg($('pwPkg'), Object.keys(PK).map(function (k) { return { k: k, t: PK[k].t, s: PK[k].s }; }), 'none', function (k) { pw.pkg = k; pwGo(); });
     A.seg($('pwBasis'), [{ k: 'y', t: t('2020', '2020'), s: 'NQ 08' }, { k: 'b', t: 'BAU', s: '43.02' }], 'y', function (k) { pw.basis = k; pwGo(); });
