@@ -252,12 +252,18 @@ input[type=range] { width: 100%; accent-color: var(--teal); margin: 0; height: 2
 .bars.tight .track { height: 20px; }
 .bars.tight .blabel { font-size: 13.5px; }
 .bars.tight .blabel small { font-size: 11.5px; }
-.pmeq { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 18px; font-weight: 700; font-variant-numeric: tabular-nums; }
-.pmeq .t { border: 1.5px solid var(--line); border-radius: 10px; padding: 5px 10px; background: var(--surface); opacity: 0; transform: translateY(8px); transition: opacity .35s, transform .35s; }
-.pmeq .t.in { opacity: 1; transform: none; }
-.pmeq .t small { display: block; font-size: 11px; font-weight: 400; color: var(--muted); }
+.pmeq { display: flex; flex-direction: column; gap: 6px; font-variant-numeric: tabular-nums; }
+.pmeq .row { display: grid; grid-template-columns: minmax(0, 9.5em) auto minmax(0, 1fr); gap: 10px; align-items: baseline; font-size: 15px; opacity: 0; transform: translateY(8px); transition: opacity .4s, transform .4s; }
+.pmeq .row .rhs { font-size: 20px; font-weight: 600; }
 .pmeq .op { color: var(--muted); }
-.pmeq .res { border-color: var(--amber); color: var(--amber); font-size: 22px; }
+.pmeq .v { font-family: Georgia, "Times New Roman", serif; font-size: 1.1em; padding: 0 1px; position: relative; }
+.pmeq .v.e::after { content: ""; position: absolute; left: -2px; right: -2px; top: 55%; height: 2px; background: var(--amber); transform: scaleX(0); transform-origin: left; transition: transform .5s; }
+.pmeq .v.e.x::after { transform: scaleX(1); }
+.pmeq .v.e.x { opacity: .5; }
+.pmeq .res { color: var(--amber); border: 1.5px solid var(--amber); border-radius: 10px; padding: 2px 10px; font-weight: 700; }
+.pmeq .key { margin: 0; font-size: 13px; color: var(--muted); opacity: 0; transition: opacity .4s; }
+.pmeq .key b { color: var(--ink); font-size: 14.5px; }
+.pmeq .row.in, .pmeq .key.in { opacity: 1; transform: none; }
 @media (max-width: 899px) { .pmath { grid-template-columns: minmax(0, 1fr); } }
 .dec { display: flex; flex-direction: column; gap: 9px; position: relative; overflow: hidden; }
 .dec label { font-size: 12.5px; color: #B5D8D0; font-weight: 700; }
@@ -516,7 +522,7 @@ input[type=range] { width: 100%; accent-color: var(--teal); margin: 0; height: 2
 <div class="pmcol">
 <p class="lbl"><span class="en">Step 1. Two starting numbers, same 2030 emissions</span><span class="vi">Bước 1. Hai con số xuất phát, cùng mức phát thải 2030</span></p>
 <div class="bars tight" id="pmBars"></div>
-<p class="lbl" style="margin-top:6px"><span class="en">Step 2. The extra gap is 56.5% of the difference</span><span class="vi">Bước 2. Khoảng thiếu thêm bằng 56,5% phần chênh lệch</span></p>
+<p class="lbl" style="margin-top:6px"><span class="en">Step 2. Why: subtract the two gaps</span><span class="vi">Bước 2. Vì sao: lấy hai khoảng thiếu trừ nhau</span></p>
 <div class="pmeq" id="pmEq"></div>
 </div>
 <div class="pmcol">
@@ -1395,18 +1401,24 @@ function pwMath(fresh) {
   var k = pw.base, b = PB[k], bau = OWNBAU[k], rng = b.lo < b.hi - 0.005;
   var max = Math.max(bau, b.hi) * 1.04;
   A.bars($('pmBars'), [
-    { k: 'b', l: t('2020 base', 'Năm cơ sở 2020'), s: b.t, v: b.hi, lo: rng ? b.lo : null, range: rng, cls: 'c-hp' },
-    { k: 'u', l: 'BAU 2030', s: k === 'hang' ? HANG : k === 'ha' ? 'Hải Anh' : 'Tung', v: bau, cls: 'c-hp', marks: [{ v: (b.lo + b.hi) / 2, t: '' }] },
-    { k: 'c1', l: t('Cap vs 2020', 'Trần so với 2020'), s: '56.5% × ' + A.R(b.lo, b.hi), v: b.hi * K, lo: rng ? b.lo * K : null, range: rng, cls: 'c-ours' },
-    { k: 'c2', l: t('Cap vs BAU', 'Trần so với BAU'), s: '56.5% × ' + N(bau), v: bau * K, cls: 'c-ours2' }
+    { k: 'b', l: t('2020 base', 'Năm cơ sở 2020'), s: 'B · ' + b.t, v: b.hi, lo: rng ? b.lo : null, range: rng, cls: 'c-hp' },
+    { k: 'u', l: 'BAU 2030', s: 'U · ' + (k === 'hang' ? HANG : k === 'ha' ? 'Hải Anh' : 'Tung'), v: bau, cls: 'c-hp', marks: [{ v: (b.lo + b.hi) / 2, t: '' }] },
+    { k: 'c1', l: t('Cap vs 2020', 'Trần so với 2020'), s: 'k × B', v: b.hi * K, lo: rng ? b.lo * K : null, range: rng, cls: 'c-ours' },
+    { k: 'c2', l: t('Cap vs BAU', 'Trần so với BAU'), s: 'k × U', v: bau * K, cls: 'c-ours2' }
   ], max, fresh);
-  var dLo = bau - b.hi, dHi = bau - b.lo;
+  var dLo = bau - b.hi;
+  /* algebra, not numbers: E = 2030 emissions after measures, B = 2020 base, U = BAU 2030, k = 56.5% */
+  var v = function (s, c) { return '<i class="v ' + (c || '') + '">' + s + '</i>'; };
+  var E = v('E', 'e'), B = v('B'), U = v('U'), kk = v('k');
   $('pmEq').innerHTML = [
-    ['t', '(' + N(bau), 'BAU 2030'], ['op', '−'], ['t', A.R(b.lo, b.hi) + ')', t('2020 base', 'năm cơ sở 2020')],
-    ['op', '='], ['t', A.R(dLo, dHi), t('difference', 'chênh lệch')], ['op', '×'], ['t', N(56.5, 1) + '%', t('kept', 'giữ lại')],
-    ['op', '='], ['t res', A.R(dLo * K, dHi * K) + ' Mt', t('extra gap', 'thiếu thêm')]
-  ].map(function (x) { return '<span class="' + x[0] + '">' + x[1] + (x[2] ? '<small>' + x[2] + '</small>' : '') + '</span>'; }).join('');
-  $$('#pmEq .t').forEach(function (el, i) { setTimeout(function () { el.classList.add('in'); }, 250 + i * 220); });
+    [t('Gap vs 2020', 'Thiếu so với 2020'), E + ' − ' + kk + '·' + B],
+    [t('Gap vs BAU', 'Thiếu so với BAU'), E + ' − ' + kk + '·' + U],
+    [t('Difference', 'Chênh lệch'), '<b class="res">' + kk + ' · (' + U + ' − ' + B + ')</b>']
+  ].map(function (r) { return '<div class="row"><span class="lhs">' + r[0] + '</span><span class="op">=</span><span class="rhs">' + r[1] + '</span></div>'; }).join('') +
+    '<p class="key">' + t('E = 2030 emissions after measures, the same in both lines, so it cancels · B = 2020 base · U = BAU 2030 · k = 56.5%', 'E = phát thải 2030 sau biện pháp, như nhau ở hai dòng nên triệt tiêu · B = năm cơ sở 2020 · U = BAU 2030 · k = 56,5%') + '</p>' +
+    '<p class="key"><b>' + t('If B < U, the 2020 reading is stricter, whatever the measures.', 'Nếu B < U, so với 2020 chặt hơn, dù áp dụng biện pháp nào.') + '</b></p>';
+  $$('#pmEq .row, #pmEq .key').forEach(function (el, i) { setTimeout(function () { el.classList.add('in'); }, 250 + i * 450); });
+  setTimeout(function () { $$('#pmEq .e').forEach(function (el) { el.classList.add('x'); }); }, 250 + 3 * 450);
   A.bars($('pmAll'), Object.keys(PB).map(function (q) {
     var p = PB[q], u = OWNBAU[q], r = p.lo < p.hi - 0.005;
     return { k: q, l: p.t, s: p.s + ' → BAU ' + u.toFixed(2), v: (u - p.lo) * K, lo: r ? (u - p.hi) * K : null, range: r, cls: OWNCLS[q] + (q === k ? '' : ' dim') };
